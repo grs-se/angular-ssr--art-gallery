@@ -1,0 +1,66 @@
+.tooltip-text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--grs-color-primary) !important;
+  font-size: 0.8rem;
+
+  &:hover {
+    /*text-decoration: underline;*/
+    color: #000 !important;
+  }
+}
+
+// Only focus-visible necessary
+input[type=text]:focus-visible,
+input[type=text]:focus,
+input[type=text]:focus-within {
+  outline: none !Important;
+  /*border: none !Important;*/
+}
+
+/*dl {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+*/
+
+/*a.nav-link:hover {
+  color: var(--grs-theme-hyperlink);
+}
+
+a.nav-link {
+  color: var(--grs-color-primary);
+}
+
+a.nav-link.active {
+  font-weight: bold;
+}
+
+a:visited {*/
+/*color: var(--grs-theme-visited--dark-mode);*/
+/*color: var(--grs-theme-visited--light-mode);
+}*/
+/*a.nav-link.active {
+  color: var(--grs-theme-hyperlink);
+}
+
+a.nav-link {
+  color: var(--grs-color-primary);
+}
+
+a:visited {*/
+/*color: var(--grs-theme-visited--dark-mode);*/
+/*color: var(--grs-theme-visited--light-mode);
+}
+
+a:hover {
+  color: var(--grs-theme-hyperlink);
+}*/
+
+

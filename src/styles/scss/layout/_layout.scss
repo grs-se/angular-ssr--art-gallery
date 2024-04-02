@@ -1,0 +1,51 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+/*.grs--container {
+  max-width: 80%;
+  height: calc(100vh - $navbar-height);*/
+  /*height: calc(100vh - ($navbar-height + $section-header-height));*/
+  /*margin-right: auto;
+  margin-left: auto;
+  padding: 1rem;
+
+  @include respond($big-desktop) {
+    max-width: 70%;
+  }
+
+  @include respond($tablet-landscape) {
+    max-width: 100%;
+  }
+
+  @include respond($phone) {
+    padding: 1rem 0;
+  }
+}*/
+
+.grs-container {
+  width: 1140px;
+
+  @include respond($big-desktop) {
+    width: 1320px;
+  }
+
+  @include respond($tablet-landscape) {
+    width: 960px;
+  }
+
+  @include respond($tablet-portrait) {
+    width: 720px;
+  }
+
+  @include respond($phone) {
+    width: 100%;
+  }
+}
+
+.grs-container-fluid {
+  width: 100%;
+  padding-right: calc(var(--grs-gutter-x) * .5);
+  padding-left: calc(var(--grs-gutter-x) * .5);
+  margin-right: auto;
+  margin-left: auto;
+}

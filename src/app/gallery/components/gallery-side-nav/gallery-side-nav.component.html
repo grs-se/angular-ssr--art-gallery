@@ -1,0 +1,106 @@
+@if (sidenavService.gallerySidenavIsExpanded) {
+  <div [class.gallery-sidenav__expanded]="appConfigService.gallerySidenavStyleExpanded"
+    class="gallery-sidenav">
+    <nav class="gallery-sidenav__nav">
+      <!--Sidenav Header-->
+      @if (appConfigService.showSidenavHeader) {
+        <div class="gallery-sidenav__header">
+          <h4 class="gallery-filters__heading">Gallery Filters</h4>
+          <button (click)="sidenavService.collapseGallerySidenav()"
+            class="gallery-sidenav__close-btn"
+            type="button">
+            <i class="gallery-sidenav__close-btn_icon fa fa-close"></i>
+          </button>
+        </div>
+      }
+      <!--/Sidenav Header-->
+      <div class="gallery-sidenav__content">
+        <!--Filter Reset-->
+        @if (appConfigService.showSidenavFilterResetBtn) {
+          <button
+            class="reset-filters--large-screen"
+            (click)="emitResetEvent()">
+            Reset Filters
+          </button>
+        }
+        <!--/Filter Reset-->
+        <!--Search Box-->
+        @if (appConfigService.showSidenavSearchBox) {
+          <app-filter-group header="Search">
+            <app-search-box [hasBtn]="true"></app-search-box>
+          </app-filter-group>
+        }
+        <!--/Search Box-->
+        <!--Sort Options-->
+        @if (appConfigService.showSidenavSortOptions) {
+          <app-filter-group
+            header="Sort">
+            <app-sort-box [sort]="artworkParams.sort" [sortOptions]="sortOptions"></app-sort-box>
+          </app-filter-group>
+        }
+        <!--/Sort Options-->
+        <!--<app-filter-group header="Selected Work" [routerLink]="['/artworks/selected-work']"></app-filter-group>-->
+        <!--Categories List-->
+        <!--*ngIf="appConfigService.showCategoriesListDropdown"-->
+        @if (showCategories) {
+          <app-accordian
+            collectionName="Categories"
+            [isCollapsed]="false">
+            <app-drop-down-list [data]="categories"
+              (onClick)="onCategorySelected($event)"
+              [routeParams]="'categories'">
+            </app-drop-down-list>
+          </app-accordian>
+        }
+        <!--/Categories List-->
+        <!--Collection List-->
+        <!--*ngIf="(accountService.isAdmin$ | async) && (accountService.currentUser$ | async)"-->
+        <!--*ngIf="appConfigService.showCollectionsListDropdown"-->
+        @if (showCollections) {
+          <app-accordian
+            collectionName="Collections"
+            [isCollapsed]="false">
+            <app-drop-down-list [data]="collections"
+              (onClick)="onCollectionSelected($event)"
+              [routeParams]="'collections'">
+            </app-drop-down-list>
+          </app-accordian>
+        }
+        <!--/Collection List-->
+        <!--Collection List Accordian Dropdown-->
+        <!--       <app-accordian *ngIf="appConfigService.showCollectionsListDropdown" header="Collections">
+        <app-drop-down-list [data]="categories"
+          (onClick)="onCategorySelected($event)"
+          [routeParams]="'categories'">
+        </app-drop-down-list>
+      </app-accordian>-->
+      <!--/Collection List Accordian Dropdown-->
+    </div>
+    <!--Sidenav Footer-->
+    @if (appConfigService.showSidenavFooter) {
+      <div
+        class="gallery-sidenav__footer">
+        <div class="reset-filters--small-screen">
+          <app-button [text]="'Done'"
+            (onClick)="emitDoneEvent()"
+            [btnClass]="'btn btn-sm btn-outline-primary mb-3'">
+          </app-button>
+          <app-button [text]="'Reset Filters'"
+            (onClick)="emitResetEvent()"
+            [btnClass]="'btn btn-sm btn-outline-secondary mb-3'">
+          </app-button>
+        </div>
+        @if (appConfigService.showSidenavPager && totalCount > 0) {
+          <app-pager
+            [totalCount]="totalCount"
+            [pageSize]="artworkParams.pageSize"
+            [pageNumber]="artworkParams.pageNumber"
+            (pageChanged)="onPageChange($event)">
+          </app-pager>
+        }
+      </div>
+    }
+    <!--/Sidenav Footer-->
+  </nav>
+</div>
+}

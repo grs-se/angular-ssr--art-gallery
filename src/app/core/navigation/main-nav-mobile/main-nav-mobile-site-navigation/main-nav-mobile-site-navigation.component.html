@@ -1,0 +1,318 @@
+<nav
+  class="main-nav-mobile__site-navigation"
+  [class.is-expanded]="sidenavService.mainNavMobileSiteNavigationIsExpanded"
+>
+  <!--  <header class="main-nav-mobile__site-navigation__header">
+  <svg (click)="sidenavService.collapseMainNavMobileSiteNavigation()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" class="grs-icon close-site-navigation" viewBox="0 0 16 16">
+    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+  </svg>
+  <hr class="li-hr" />
+</header>-->
+  <ul class="main-list">
+    <li>
+      <a
+        #navLink
+        (click)="sidenavService.collapseMainNavMobileSiteNavigation()"
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+      >
+        Home
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#787878"
+          class="grs-icon chevron-right"
+          viewBox="0 0 24 24"
+        >
+          <title>Go To Link Icon</title>
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+        </svg>
+      </a>
+      <hr class="li-hr" />
+    </li>
+    <li [class.active]="sublinksIsExpanded">
+      <div class="li-elements-wrapper">
+        <a
+          #navLink
+          routerLink="/gallery"
+          routerLinkActive="active"
+          (click)="sidenavService.collapseMainNavMobileSiteNavigation()"
+          class="nav-link"
+        >
+          Gallery
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#787878"
+            class="grs-icon chevron-right"
+            viewBox="0 0 24 24"
+          >
+            <title>Go To Link Icon</title>
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+          </svg>
+        </a>
+        <hr class="li-hr" />
+        @if (!sublinksIsExpanded) {
+          <svg
+            (click)="expandSublinks()"
+            xmlns="http://www.w3.org/2000/svg"
+            class="grs-icon drawer-item-expand"
+            width="24"
+            height="24"
+            fill="#fff"
+            viewBox="0 0 16 16"
+          >
+            <title>Expand Icon</title>
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+            ></path>
+          </svg>
+        }
+        @if (sublinksIsExpanded) {
+          <svg
+            (click)="collapseSublinks()"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="#fff"
+            class="grs-icon drawer-item-collapse"
+            viewBox="0 0 16 16"
+          >
+            <title>Remove Icon</title>
+            <path
+              d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
+            ></path>
+          </svg>
+        }
+      </div>
+      <hr class="li-hr" />
+
+      <!--SUBLIST-->
+      @if (sublinksIsExpanded) {
+        <ul class="sub-list">
+          <!-- Categories -->
+          @if (appConfigService.enableCategories) {
+            <li [class.active]="sublinksIsExpanded">
+              <div class="li-elements-wrapper">
+                <a
+                  #navLink
+                  (click)="sidenavService.collapseMainNavMobileSiteNavigation()"
+                  routerLink="/gallery/categories"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  Categories
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#787878"
+                    class="grs-icon chevron-right"
+                    viewBox="0 0 24 24"
+                  >
+                    <title>Go To Link Icon</title>
+                    <path
+                      d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                    ></path>
+                  </svg>
+                </a>
+                @if (!categoriesSublistIsExpanded) {
+                  <svg
+                    (click)="expandCategoriesSublist()"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="drawer-item-expand"
+                    width="24"
+                    height="24"
+                    fill="#fff"
+                    viewBox="0 0 16 16"
+                  >
+                    <title>Expand Icon</title>
+                    <path
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                    ></path>
+                  </svg>
+                }
+                @if (categoriesSublistIsExpanded) {
+                  <svg
+                    (click)="collapseCategoriesSublist()"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="#fff"
+                    class="grs-icon drawer-item-expand"
+                    viewBox="0 0 16 16"
+                    id="IconChangeColor"
+                  >
+                    <title>Remove Icon</title>
+                    <path
+                      d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
+                    ></path>
+                  </svg>
+                }
+                <hr class="li-hr" />
+              </div>
+              <!--Categories Sublist-->
+              @if (categoriesSublistIsExpanded) {
+                <ul class="sub-list">
+                  @for (category of categories; track category) {
+                    <li>
+                      <a
+                        #navLink
+                        (click)="
+                          sidenavService.collapseMainNavMobileSiteNavigation()
+                        "
+                        [routerLink]="[
+                          '/gallery/categories/' + (category.name | lowercase)
+                        ]"
+                        routerLinkActive="active"
+                        class="nav-link"
+                      >
+                        {{ category.name }}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="#787878"
+                          class="grs-icon chevron-right"
+                          viewBox="0 0 24 24"
+                        >
+                          <title>Chevron Right Icon</title>
+                          <path
+                            d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                          ></path>
+                        </svg>
+                      </a>
+                      <hr class="li-hr" />
+                    </li>
+                  }
+                </ul>
+              }
+              <!--End of Categories Sublist-->
+              <hr class="li-hr" />
+            </li>
+          }
+          <!-- End of Categories -->
+          <!-- Collections -->
+          @if (appConfigService.enableCollections) {
+            <li [class.active]="sublinksIsExpanded">
+              <div class="li-elements-wrapper">
+                <a
+                  #navLink
+                  (click)="sidenavService.collapseMainNavMobileSiteNavigation()"
+                  routerLink="/gallery/collections"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  Collections
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#787878"
+                    class="grs-icon chevron-right"
+                    viewBox="0 0 24 24"
+                  >
+                    <title>Go To Link Icon</title>
+                    <path
+                      d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                    ></path>
+                  </svg>
+                </a>
+                @if (!collectionsSublistIsExpanded) {
+                  <svg
+                    (click)="expandCollectionsSublist()"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="drawer-item-expand"
+                    width="24"
+                    height="24"
+                    fill="#fff"
+                    viewBox="0 0 16 16"
+                  >
+                    <title>Expand Icon</title>
+                    <path
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                    ></path>
+                  </svg>
+                }
+                @if (collectionsSublistIsExpanded) {
+                  <svg
+                    (click)="collapseCollectionsSublist()"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="#fff"
+                    class="grs-icon drawer-item-expand"
+                    viewBox="0 0 16 16"
+                    id="IconChangeColor"
+                  >
+                    <title>Remove Icon</title>
+                    <path
+                      d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
+                    ></path>
+                  </svg>
+                }
+                <hr class="li-hr" />
+              </div>
+              <!--Collections Sublist-->
+              @if (collectionsSublistIsExpanded) {
+                <ul class="sub-list">
+                  @for (collection of collections; track collection) {
+                    <li>
+                      <a
+                        #navLink
+                        (click)="
+                          sidenavService.collapseMainNavMobileSiteNavigation()
+                        "
+                        [routerLink]="[
+                          '/gallery/collections/',
+                          collection.name | lowercase
+                        ]"
+                        routerLinkActive="active"
+                        class="nav-link"
+                      >
+                        {{ collection.name }}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="#787878"
+                          class="grs-icon chevron-right"
+                          viewBox="0 0 24 24"
+                        >
+                          <title>Go To Link Icon</title>
+                          <path
+                            d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                          ></path>
+                        </svg>
+                      </a>
+                      <hr class="li-hr" />
+                    </li>
+                  }
+                </ul>
+              }
+              <!--End of Collections Sublist-->
+            </li>
+            <!-- end of Collections -->
+          }
+        </ul>
+      }
+      <!--End of SUBLIST-->
+      <hr class="li-hr" />
+    </li>
+    <li>
+      <a
+        #navLink
+        (click)="sidenavService.collapseMainNavMobileSiteNavigation()"
+        routerLink="/contact"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        Contact
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="#787878"
+          class="grs-icon chevron-right"
+          viewBox="0 0 24 24"
+        >
+          <title>Go To Link Icon</title>
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+        </svg>
+      </a>
+      <hr class="li-hr" />
+    </li>
+  </ul>
+</nav>

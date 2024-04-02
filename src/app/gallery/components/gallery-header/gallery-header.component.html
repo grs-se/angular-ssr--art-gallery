@@ -1,0 +1,73 @@
+@if ($any(bcService.breadcrumbs$ | async); as breadcrumbs) {
+  <section class="gallery-header">
+    @if (breadcrumbs[breadcrumbs.length - 1].label !== "Home") {
+      <div class="gallery-header__container">
+        @if (showNextPrevCollectionToggles) {
+          <button
+            (click)="emitOnPrevEvent($event)"
+            class="gallery__toggle-btn__prev"
+            [tooltip]="'Previous Collection'"
+            position="right"
+            [hideDelay]="50"
+          >
+            <i class="fa fa-sm fa-angle-left"></i>
+          </button>
+          <button
+            (click)="emitOnNextEvent($event)"
+            class="gallery__toggle-btn__next"
+            [tooltip]="'Next Collection'"
+            position="left"
+            [hideDelay]="50"
+          >
+            <i class="fa fa-sm fa-angle-right"></i>
+          </button>
+        }
+        <div class="gallery-header__col-l">
+          <app-breadcrumb></app-breadcrumb>
+          <!--      <xng-breadcrumb [separator]="iconTemplate">
+          <ng-container *xngBreadcrumbItem="let breadcrumb">
+            {{ breadcrumb | titlecase }}
+          </ng-container>
+        </xng-breadcrumb>
+        <ng-template #iconTemplate>
+          <i class="fa fa-angle-right"></i>
+        </ng-template>-->
+          <!--      <button [class.active]="sidenavService.gallerySidenavIsExpanded"
+        (click)="sidenavService.toggleGallerySidenav()"
+        class="grs-btn"
+        type="button"
+        [tooltip]="'Gallery Filters'"
+        position="{{sidenavService.gallerySidenavIsExpanded ? 'left' : 'right'}}"
+        [hideDelay]="50">
+        <i class="gallery-sidenav_toggle-icon fa fa-list"></i>
+      </button>-->
+          <!--<h4 class="">{{collection.name | titlecase}}</h4>-->
+          <div class="gallery-header__title-wrapper">
+            @if (showHeaderTitle) {
+              <h3 class="gallery-header__h3">
+                {{ breadcrumbs[breadcrumbs.length - 1].label | titlecase }}
+              </h3>
+            }
+            <!--<div class="gallery-header__colLeft__ng-content">-->
+            <ng-content select="[colLeft]"></ng-content>
+          </div>
+          <!--</div>-->
+          <!--<app-gallery-toolbar *ngIf="appConfigService.showGalleryToolbar" [totalCount]="totalCount" [artworkParams]="artworkParams"></app-gallery-toolbar>-->
+        </div>
+        <div class="gallery-header__col-r">
+          <ng-content></ng-content>
+          <!-- <app-search-box *ngIf="appConfigService.showGalleryToolbarSearchBox" [hasBtn]="true"></app-search-box>
+    <app-sort-box *ngIf="appConfigService.showGalleryToolbarSortOptions" [sort]=" artworkParams!.sort" [sortOptions]="sortOptions"></app-sort-box>-->
+        </div>
+      </div>
+    }
+    <!--      <div class="col-3">
+<xng-breadcrumb>
+  <ng-container *xngBreadcrumbItem="let breadcrumb">
+    {{breadcrumb | titlecase}}
+  </ng-container>
+</xng-breadcrumb>
+</div>-->
+    <!--</div>-->
+  </section>
+}

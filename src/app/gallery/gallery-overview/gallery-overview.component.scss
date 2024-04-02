@@ -1,0 +1,134 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+:host {
+  width: 100%;
+}
+
+.gallery-overview {
+  width: 75%;
+  margin: 0 auto;
+
+  @include respond($tablet-portrait) {
+    width: 100%;
+    /*  padding: 0.5rem;*/
+  }
+  /*width: 75%;*/
+  &__container {
+    /*width: 75%;*/
+    margin: 0 auto;
+    padding: 2.75rem 0;
+  }
+
+
+  &__grid {
+    /*    display: flex;
+    flex-direction: column;*/
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+
+    @include respond($phone) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      /*display: block;*/
+    }
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  &__card {
+    height: 16rem;
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+    /*gap: 2rem;*/
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);
+
+    &:hover {
+      cursor: pointer;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 3px 6px 0 rgb(0 0 0 / 40%)
+    }
+
+    &__icon-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        /*height: 48px;*/
+        align-items: center;
+        justify-content: flex-end;
+        margin: auto;
+
+        svg {
+            height: 56px;
+            width: 56px;
+        }
+    }
+  }
+
+  &__card-info {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-direction:column;
+  }
+
+  &__card-details {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding: 1.75rem 2.5rem;
+  }
+
+  &__img {
+    position: relative;
+    height: 100%;
+    object-fit: cover;
+    width: 240px;
+    /*padding: 18px;*/
+  }
+}
+/* padding: 18px;
+        }
+  }
+}*/
+
+.img-overlay {
+  background: rgba(0,0,0,0.5);
+  filter: saturate(0%);
+  position: absolute;
+  /*  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;*/
+}
+
+.category-name {
+  font: 600 16px/24px 'Univers LT Std';
+  text-transform: uppercase;
+  /*position: absolute;*/
+  /*  top: 50%;
+  left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*background: rgba(0,0,0,0.8);*/
+  /*  top: 50%;
+  left: 50%;
+  transform: translateX(50%), translateY(-50%);*/
+  color: black;
+  /*text-transform: uppercase;*/
+}
+
+.line-clamp {
+  line-clamp: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /*white-space: nowrap;*/
+}

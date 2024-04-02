@@ -1,0 +1,25 @@
+<select class="grs-form-select"
+        (change)="emitSortSelectedEvent($event)">
+
+  @for(sort of sortOptions; track sort.value) {
+  <option [selected]="['{{sort}} === sort.value']"
+          [value]="sort.value">
+    {{ sort.name }}
+  </option>
+  }
+</select>
+
+<!--
+<select class="grs-form-select"
+        (change)="emitSortSelectedEvent($event)">
+  @for (sortOption of sortOptions; track sortOption.value; let index = $index) {
+  @if(isSortOption(sortOption.value)) {
+
+  <option [selected]="['{{sortOption}} === sortOption.value']"
+          [value]="sortOption.value">
+    {{ sortOption.name }}
+  </option>
+  }
+  }
+</select>
+-->

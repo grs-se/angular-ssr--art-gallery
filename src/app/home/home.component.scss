@@ -1,0 +1,149 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+:host {
+  width: 100%;
+}
+
+.home-page {
+  width: 100%;
+  position: relative;
+
+  &__gallery-overview__wrapper {
+    width: 100%;
+    padding: 0 48px;
+    
+
+    @include respond($tablet-portrait) {
+      padding: 0;
+    }
+  }
+}
+
+
+.section-heading {
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 170px;
+    /*    margin: auto;
+    display: block;*/
+  }
+
+  &__heading {
+    margin-bottom: 0.5em;
+  }
+}
+
+.hero {
+  min-height: calc(100vh - var(--grs-navbar-height)) !important;
+  /*padding-top: 50px;*/
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  /*justify-content: center;*/
+  /*padding: 6rem;*/
+
+  @include respond($phone) {
+    // min-height: calc(100vh - var(--grs-navbar-height-mobile));
+  }
+
+  &__carousel {
+    /*display: block;*/
+    /*flex-grow: 1;*/
+    /*height: 100%;*/
+    width: 50%;
+    width: 100%;
+    margin: 0 auto;
+    object-fit: cover;
+    position: relative;
+  }
+
+  img {
+    /*    height: 50vh;
+    width: 100%;
+    object-fit: contain;*/
+    display: block;
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+
+    @include respond($phone) {
+      height: 50vh;
+    }
+  }
+
+  .grs-container-fluid {
+    /*background: linear-gradient(to bottom, #f2f2f2 0%, #fff 100%);*/
+  }
+
+  &-header {
+    margin: auto;
+    height: max-content;
+    padding: 2rem 2rem 3.5rem;
+    /*    width: 100%;
+    height: 100%;*/
+
+    h1 {
+      font-weight: bold;
+      font-size: 2.2rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      /*text-transform: uppercase;*/
+    }
+  }
+}
+
+.enter-site-btn {
+  position: absolute;
+}
+
+.image-container :hover {
+  opacity: 1;
+
+  & button {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.btns-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  z-index: 100;
+  /*padding: 1.25rem 2rem;*/
+  font-size: 1.25rem;
+  border-radius: 0;
+}
+
+.hover-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.175);
+  opacity: 0;
+  transition: all 0.5s;
+
+  & button {
+    z-index: 10;
+    transition: all 0.5s;
+  }
+}
+
+@keyframes scale {
+  to {
+    transform: scale(1.2);
+  }
+}

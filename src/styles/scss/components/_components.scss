@@ -1,0 +1,47 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+.grs-nav-link {
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+
+// CONTAINERS
+
+.grs-container-fluid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: calc(var(--grs-gutter-x) * .5);
+  padding-left: calc(var(--grs-gutter-x) * .5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.grs-btn {
+  display: block;
+  visibility: visible;
+/*  min-height: 48px;
+  width: 48px;*/
+  border-radius: 5px;
+  background-color: inherit;
+  /*  background: linear-gradient(to top, #f2f2f2 0%, #fff 100%);
+*/ border: 1px solid #e3e6ed;
+  color: var(--grs-color-primary) !Important;
+  /*border: 1px solid #95a5a6;*/
+  /*padding: 0.2rem;*/
+
+  i {
+    color: #95a5a6;
+    padding: 0.2rem;
+
+    @include respond($tablet-portrait) {
+      padding: 0.6rem;
+    }
+  }
+}

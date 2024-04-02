@@ -1,0 +1,97 @@
+.selected-works {
+  width: 100vw;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  gap: 56px;
+  padding: 56px;
+
+  .image-container {
+    display: block;
+    height: 100%
+  }
+
+  img {
+    height: 25rem;
+    width: auto;
+  }
+}
+
+.artwork-info-box {
+  display: block;
+  /*height: calc(calc(var(--grs-grid-card-image-height) + (calc(var(--grs-grid-card-padding) * 2))) / var(--phi));*/
+  height: 184px;
+  padding: 18px 9px;
+  /*    @include respond($phone) {
+      padding: 15px 18px;
+    }*/
+}
+
+.p-artwork-info-title {
+  /*color: #000 !important;*/
+  color: #999 !important;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  font-style: normal;
+  margin-bottom: 2px;
+}
+
+.p-artwork-info-details {
+  display: block;
+}
+
+.span-artwork-medium, .span-artwork-dims {
+  display: block;
+  line-height: 16px;
+}
+
+.btns-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hover-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--grs-hover-overlay-white);
+  opacity: 0;
+  transition: all 0.5s;
+  /*  & button {
+    z-index: 10;
+    transition: all 0.5s;
+  }*/
+  /*  & button:first-of-type {
+    transform: translateX(-2rem);
+  }
+
+  & button:last-of-type {
+    transform: translateX(2rem);
+  }*/
+}
+
+@keyframes scale {
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.btn {
+  width: 30%;
+  height: 3rem;
+}
+
+
+a {
+  color: var(--grs-color-primary);
+}
+
+a:not(:hover) {
+  text-decoration: none;
+  color: rgba(33, 37, 41, 0.75);
+}

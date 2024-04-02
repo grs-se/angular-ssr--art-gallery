@@ -1,0 +1,13 @@
+<a
+  [ngClass]="mode === 'icon' ? 'icon' : 'text'"
+  id="scrollUp"
+  (click)="scrollUp()"
+  >
+  @if (mode === 'icon') {
+    <img src="/assets/icons/top.png" />
+  }
+
+  @if (mode === 'text') {
+    <span>Back to top</span>
+  }
+</a>

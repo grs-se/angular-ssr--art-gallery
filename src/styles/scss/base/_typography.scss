@@ -1,0 +1,53 @@
+@use 'mixins' as *;
+@use "../../../assets/fonts/univers/univers";
+@use "../../../assets/fonts/lucida-sans/lucida-sans";
+
+
+/*@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?
+family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+
+
+body {
+  font: 400 75% Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Nunito', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !Important;
+
+  @include respond($tablet-portrait) {
+    font-family: 'Univers LT Std' !important;
+    font-weight: 300 !important;
+  }
+}
+
+a {
+  color: #000;
+  font-size: 12px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+small {
+  font-size: 0.875em;
+}
+
+.text-sm {
+  font-size: 0.875em;
+}
+
+.text-base {
+  font-size: 0.95rem;
+}

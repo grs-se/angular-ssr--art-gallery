@@ -1,0 +1,77 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+p {
+  font-size: 0.875rem;
+}
+
+.collection-information {
+  background: var(--grs-bg-light);
+  background: linear-gradient(to bottom, #f5f5f5 0%, #fff 100%);
+  background: #fff;
+  border: 1px solid var(--grs-border-color);
+  margin: 0 auto 2rem;
+  width: 75%;
+  /*margin-bottom: 2rem;*/
+  /*width: 75%;*/
+
+  @include respond($tablet-landscape) {
+    width: 90%;
+    /*margin: 1.5rem;*/
+    /*width: 100%;*/
+  }
+
+  &__layout {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1.75rem;
+
+    @include respond($tablet-landscape) {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+}
+/*dt {
+    margin-bottom: 1px solid var(--grs-border-color);
+}
+*/
+dl {
+  gap: 2rem;
+}
+
+dl.dl-collection-text {
+  gap: 0;
+  flex-direction: column;
+}
+/*dl * {
+  max-width: 12rem;
+}*/
+
+td {
+  /*padding: 1rem;*/
+}
+
+th {
+  flex-wrap: nowrap;
+  min-width: max-content;
+
+  div {
+    /*padding: 1rem;*/
+  }
+}
+
+td {
+  font-size: 0.875rem;
+}
+
+td.description {
+  max-width: 12rem;
+}
+
+.table {
+  background-color: var(--grs-bg-light) !important;
+  /*    display: flex;
+    flex-direction: column;*/
+}

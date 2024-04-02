@@ -1,0 +1,75 @@
+<div
+  class="grs-card"
+  [ngClass]="[
+    'card-style--' + cardStyles.cardStyle,
+    'mobile-card-style--' + cardStyles.cardStyleMobile
+  ]"
+>
+  <div
+    class="image-container"
+    [class.bg_fade]="cardStyles.background === 'fade'"
+    [style.paddingBottom.px]="!cardStyles.showInfo ? '184' : ''"
+    [style.padding.px]="
+      cardStyles.cardStyle === 'cropped' ? cardStyles.cardImgPaddingXAxisPx : ''
+    "
+  >
+    <!--Upgrade to Angular 16.2 to use alterable ngSrc for ngOptimizedImage-->
+    <!--[routerLink]="['/gallery', collectionName, galleryName, artwork.id]"-->
+    <!--[routerLink]="queryString"-->
+    <a (click)="emitOnClickEvent(artwork.id)" class="image-wrapper">
+      <!-- This is surely horribly complicated code! And it's wrong...sort it out -->
+      <img
+        #imgElRef
+        [class.imgFocusTop]="
+          responsiveImageService.getMainImg(artwork).focus === ImageFocus.TOP
+        "
+        [class.imgFocusRight]="
+          responsiveImageService.getMainImg(artwork).focus === ImageFocus.RIGHT
+        "
+        [class.imgFocusBottom]="
+          responsiveImageService.getMainImg(artwork).focus === ImageFocus.BOTTOM
+        "
+        [class.imgFocusLeft]="
+          responsiveImageService.getMainImg(artwork).focus === ImageFocus.LEFT
+        "
+        class="grid-card__image"
+        src="{{ artwork.imageUrl }}"
+        [height]="
+          isPhonePortrait
+            ? ((calculateAspectRatio(artwork) * getMainImgHeight(artwork)) /
+                cardStyles.cardImgHeight) *
+              100
+            : cardStyles.cardImgHeight
+        "
+        [width]="setImgWidth(artwork)"
+        alt="{{ artwork.title }}"
+      />
+      <!--(load)="calculateAspectRatio(artwork)"-->
+      <!--onerror="this.src='./assets/images/placeholder.webp';"-->
+      <!--ngSrcset="200w, 400w, 600w, 800w, 1000w, 1200w, 1600w, 2000w, 3000w"-->
+      <!--<div *ngFor="let image of artwork.images"></div>-->
+      <!--<p>
+        Height: {{ setImgHeight(artwork) }} X Width:
+        {{ setImgWidth(artwork) }}
+      </p>-->
+    </a>
+
+    @if (cardStyles.showViewBtn) {
+      <div class="btns-wrapper hover-overlay">
+        <!--<button *ngIf="!(accountService.isAdmin$ | async) && (accountService.currentUser$ | async)" (click)="addItemToBasket()" type="button" class="btn btn-sm btn-secondary me-2 fa fa-shopping-cart"></button>-->
+        <button
+          [routerLink]="[artwork.id]"
+          type="button"
+          class="btn btn-sm btn-secondary"
+        >
+          View
+          <!--<i class="fa fa-expand"></i>-->
+        </button>
+      </div>
+    }
+  </div>
+
+  @if (cardStyles.showInfo) {
+    <app-info-box [artwork]="artwork" [showInfoFooter]="false" />
+  }
+</div>

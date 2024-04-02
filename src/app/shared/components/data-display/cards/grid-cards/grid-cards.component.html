@@ -1,0 +1,89 @@
+<div
+  (deferLoad)="(true)"
+  class="grs-card"
+  [ngClass]="['card-style--' + cardStyle]"
+>
+  <div class="image-container">
+    <!--Upgrade to Angular 16.2 to use alterable ngSrc for ngOptimizedImage-->
+    <!--[routerLink]="['/gallery', collectionName, galleryName, artwork.id]"-->
+    <!--[routerLink]="queryString"-->
+    <a
+      (click)="emitOnClickEvent(artwork.id)"
+      [routerLink]="['/gallery/categories/', artwork.artworkCategory]"
+      class="image-wrapper"
+    >
+      <img
+        #imgElRef
+        class="grid-card__image"
+        ngSrc="{{ artwork.imageUrl }}"
+        [height]="
+          ((calculateAspectRatio(artwork) * getMainImgHeight(artwork)) /
+            cardImgHeight) *
+          100
+        "
+        [width]="
+          ((calculateAspectRatio(artwork) * getMainImgWidth(artwork)) /
+            cardImgHeight) *
+          100
+        "
+        alt="{{ artwork.title }}"
+      />
+      <!--(load)="calculateAspectRatio(artwork)"-->
+      <!--onerror="this.src='./assets/images/placeholder.webp';"-->
+      <!--ngSrcset="200w, 400w, 600w, 800w, 1000w, 1200w, 1600w, 2000w, 3000w"-->
+      <!--<div *ngFor="let image of artwork.images"></div>-->
+      <!--<p>
+              Height: {{ setImgHeight(artwork) }} X Width:
+              {{ setImgWidth(artwork) }}
+            </p>-->
+    </a>
+    @if (cardStyle === 1) {
+      <div class="btns-wrapper hover-overlay">
+        <!--<button *ngIf="!(accountService.isAdmin$ | async) && (accountService.currentUser$ | async)" (click)="addItemToBasket()" type="button" class="btn btn-sm btn-secondary me-2 fa fa-shopping-cart"></button>-->
+        <button
+          [routerLink]="[artwork.id]"
+          type="button"
+          class="btn btn-sm btn-secondary"
+        >
+          View
+          <!--<i class="fa fa-expand"></i>-->
+        </button>
+      </div>
+    }
+  </div>
+  <div class="artwork-info-box">
+    <p class="p-artwork-info-title">
+      <span class="span-artwork-title">
+        {{ artwork.title | titlecase }}
+      </span>
+    </p>
+    @if (artwork.dateProduced) {
+      <p class="p-artwork-info-details">
+        {{ dateProduced(artwork.dateProduced) }}
+        @if (artwork.artworkMedium) {
+          <span class="span-artwork-medium">{{ artwork.artworkMedium }}</span>
+        }
+        <span class="span-artwork-dims"> 57 x 74cm</span>
+      </p>
+    }
+    <!--<em>index: {{i}}</em>-->
+    <!--<div class="card-details mx-4 mb-2">
+          <div class="row">
+            <div class="col-7">
+              <a [routerLink]="['/gallery/', galleryRoutes?.galleryName, artwork.id]"
+                class="active artwork-title">
+                {{artwork.title}}
+              </a>
+            </div>
+            <div *ngIf="artwork.dateProduced" class="col-5">
+              <small class="text-muted">{{dateProduced(artwork.dateProduced)}}</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <small *ngIf="artwork.medium" class="text-muted">{{artwork.medium | titlecase}}</small>
+            </div>
+          </div>
+        </div>-->
+  </div>
+</div>

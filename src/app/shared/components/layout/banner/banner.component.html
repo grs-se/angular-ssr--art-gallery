@@ -1,0 +1,51 @@
+<carousel class="hero__carousel"
+  [isAnimated]="true"
+  [showIndicators]="false">
+  @if (slides) {
+    @for (slide of slides; track slide) {
+      <slide>
+        <div class="image-container"
+          style="cursor: pointer">
+          <img src="{{ slide.image }}"
+            alt="slide" />
+            <!--        [style.height]="height + 'vh'"
+            [style.width]="width + '%'"-->
+          </div>
+        </slide>
+      }
+    }
+
+    @if (artworks) {
+      @for (artwork of artworks; track artwork) {
+        <slide>
+          <div class="image-container"
+            style="cursor: pointer">
+            <img
+              src="{{ artwork.imageUrl }}"
+              alt="slide" />
+            </div>
+          </slide>
+        }
+      }
+
+      @if (artwork) {
+        <slide>
+          <div class="image-container"
+            style="cursor: pointer">
+            <img src="{{ artwork.imageUrl }}"
+              alt="slide" />
+            </div>
+          </slide>
+        }
+
+        @if (imgUrl) {
+          <slide>
+            <div class="image-container"
+              style="cursor: pointer">
+              <img src="{{ imgUrl }}"
+                alt="slide" />
+              </div>
+            </slide>
+          }
+
+        </carousel>

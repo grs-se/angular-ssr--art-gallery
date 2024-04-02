@@ -1,0 +1,42 @@
+<!--<app-section-header wrapperStyles="margin-left: 15.875rem;" height="pt-5 pb-3" padding="px-3"></app-section-header>-->
+<section class="collections-overview__section">
+  <div class="collections-overview__container">
+    <div class="collections-overview__header container">
+      <h4 class="search-collections">
+        Search {{ categoriesCount }} Collections
+      </h4>
+      <span>{{ totalCount }} Artworks</span>
+    </div>
+    <!-- <app-category-slides [categories]="categories"></app-category-slides>-->
+    <app-overview-cards
+      [categories]="categories"
+      [categoryCount]="categoriesCount"
+      (onClick)="onCategorySelected($event)"
+      [showTitle]="false"
+    >
+    </app-overview-cards>
+    <app-category-cards
+      [categories]="categories"
+      [categoryCount]="categoriesCount"
+      (onClick)="onCategorySelected($event)"
+    >
+    </app-category-cards>
+    <!-- <div class="gallery-overview__container">
+    <ul class="gallery-overview__grid list-unstyled">
+      <li *ngFor="let category of categories"
+          routerLink="/gallery/{{category.name}}"
+          class="gallery-overview__card"
+          [value]="category.id"
+          (click)="onCategorySelected(category.id)">
+        <img src="{{category.imageUrl}}" class="gallery-overview__img" />
+        <div class="gallery-overview__card-details">
+          <h1 class="category-name">{{category.name}}</h1>
+          <p>{{category.startDate}} - {{category.endDate}}</p>
+          <p>({{category.count}})</p>
+          <p class="line-clamp">{{category.description}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>-->
+  </div>
+</section>

@@ -1,0 +1,11 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+:host {
+  display: none;
+
+  @include respond($tablet-portrait) {
+    display: block;
+    /*border-bottom: 3*/
+  }
+}

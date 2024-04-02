@@ -1,0 +1,26 @@
+<div class="collection-information">
+  <div class="collection-information__layout">
+    <div class="grs-row">
+      <dl>
+        <div>
+          <dt class="">Name</dt>
+          <dd class="text-sm">{{ category.name }}</dd>
+        </div>
+        <div>
+          <dt scope="col">Id</dt>
+          <dd class="text-sm">{{ category.id }}</dd>
+        </div>
+        <div>
+          <dt scope="col">Dates</dt>
+          <dd class="text-sm">{{category.startDate}} to {{category.endDate}}</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="grs-row">
+      <dl class="dl-collection-text">
+        <dt scope="col">Text</dt>
+        <dd class="text-sm">{{ category.description }}</dd>
+      </dl>
+    </div>
+  </div>
+</div>

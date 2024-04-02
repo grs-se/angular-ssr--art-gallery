@@ -1,0 +1,167 @@
+<aside class="gallery-aside">
+  <header class="gallery-aside__header">
+    <div>
+      <button
+        (click)="emitPrevArtworkEvent($event)"
+        class="gallery-aside__toggle-btn__prev"
+        [tooltip]="'Previous Artwork'"
+        position="right"
+        [hideDelay]="50"
+      >
+        <i class="fa fa-sm fa-angle-left"></i>
+      </button>
+      <button
+        (click)="emitNextArtworkEvent($event)"
+        class="gallery-aside__toggle-btn__next"
+        [tooltip]="'Next Artwork'"
+        position="left"
+        [hideDelay]="50"
+      >
+        <i class="fa fa-sm fa-angle-right"></i>
+      </button>
+    </div>
+    <button
+      (click)="closeAside()"
+      class="gallery-aside__close-btn"
+      type="button"
+    >
+      <i class="gallery-aside__close-btn_icon fa fa-close"></i>
+    </button>
+  </header>
+  @if (artwork) {
+    <div class="gallery-aside__content">
+      <figure class="gallery-aside__figure">
+        <div class="gallery-aside__figure-img__wrapper">
+          <a
+            [routerLink]="[
+              '/gallery/',
+              route.snapshot.paramMap.get('galleryName'),
+              artwork.id
+            ]"
+          >
+            <img
+              class="gallery-aside__figure-img"
+              src="{{ artwork.imageUrl }}"
+            />
+          </a>
+        </div>
+      </figure>
+      <figcaption class="gallery-aside__figure-figcaption">
+        <div class="details">
+          <!--  <h5>"{{artwork.title}}"</h5>-->
+          <dl>
+            <div>
+              <dt>Title:</dt>
+              <dd>
+                "<strong>{{ artwork.title }}</strong
+                >"
+              </dd>
+            </div>
+            @if (artwork.dateProduced != null) {
+              <div>
+                <dt class="">Date:</dt>
+                <dd class="">{{ artwork.dateProduced.getFullYear() }}</dd>
+              </div>
+            }
+            <div>
+              <dt class="">Medium:</dt>
+              <dd class="">{{ artwork.artworkMedium | titlecase }}</dd>
+            </div>
+          </dl>
+          <!--
+            <div *ngIf="(accountService.currentUser$ | async)"
+              class="accordion accordion-flush d-flex justify-content-end align-items-center gap-2 py-2"
+              (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseBasic"
+              role="button">
+              <span>Details</span>
+              <i class="fa fa-sm"
+                [ngClass]="isCollapsed ? 'fa-plus' : 'fa-minus'">
+              </i>
+            </div>-->
+          <!--style="font-size:20px"
+          </div>
+          <!--<hr>-->
+          <div id="collapseBasic">
+            <dl class="well well-lg card card-block card-header mb-3">
+              <dt class="">Category:</dt>
+              <dd class="">{{ artwork.artworkCategory }}</dd>
+              <dt class="">Location Produced:</dt>
+              <dd class="">{{ artwork.locationProduced }}</dd>
+              <!--<dd class="">{{ artwork.locationProduced }}</dd>-->
+              <dt class="">Description:</dt>
+              <dd>
+                <p>{{ artwork.description }}</p>
+              </dd>
+              <!--         <div class="d-flex flex-row">
+              <dt class="fs-6 pe-2">Category:</dt>
+              <dd class="fs-6">{{artwork.artworkCategory}}</dd>
+            </div>
+            <div class="d-flex flex-row">
+              <dt class="fs-6 pe-2">Location Produced:</dt>
+              <dd class="fs-6">{{artwork.locationProduced}}</dd>
+            </div>
+            <dt class="fs-6">Description:</dt>
+            <dd><p>{{artwork.description}}</p></dd>-->
+              <!--  <dt *ngIf="artwork.artworkTags" class="fs-6 ">Tags:</dt>
+            <ng-container *ngFor="let tag of artwork.artworkTags">
+              <dd class="d-inline fs-6 lh-sm"><span class="badge bg-info text-light me-1">{{tag}}</span></dd>
+            </ng-container>
+            --></dl>
+          </div>
+        </div>
+        <!--<div *ngIf="!(accountService.isAdmin$ | async) && (accountService.currentUser$ | async)">
+      <p style="font-size: 2em;">{{artwork.price | currency: 'GBP'}}</p>
+      <h5 class="text-primary mb-3" *ngIf="quantityInBasket > 0">
+        You have {{quantityInBasket}} of this item in your basket
+      </h5>
+      <div class="d-flex justify-content-start align-items-center">
+        <i (click)="decrementQuantity()"
+          class="fa fa-minus-circle text-warning me-2"
+          style="cursor: pointer; font-size: 2em;">
+        </i>
+        <span class="font-weight-bold" style="font-size: 1.5em;">
+          {{quantity}}
+        </span>
+        <i (click)="incrementQuantity()"
+          class="fa fa-plus-circle text-warning ms-2"
+          style="cursor: pointer; font-size: 2em;">
+        </i>
+        <button (click)="updateBasket()"
+          [disabled]="quantity === quantityInBasket"
+          class="btn btn-outline-primary ms-4">
+          {{buttonText}}
+        </button>
+      </div>
+    </div>-->
+      </figcaption>
+    </div>
+  }
+</aside>
+
+<!--<aside class="gallery-aside">
+<div>
+  <figure class="gallery-aside__figure">
+    <img class="gallery-aside__figure-img" src="{{artwork?.imageUrl}}"/>
+
+    <figcaption class="gallery-aside__figure-figcaption">
+      <ul>
+        <li>
+          <h5>
+            {{artwork?.title}}
+          </h5>
+        </li>
+        <li>
+          <a></a>
+        </li>
+        <li>
+          <p>{{artwork?.description}}</p>
+        </li>
+      </ul>
+    </figcaption>
+  </figure>
+
+</div>
+</aside>
+-->

@@ -1,0 +1,29 @@
+<div class="gallery-toolbar">
+  <app-paging-header [totalCount]="totalCount"
+    [pageNumber]="artworkParams?.pageNumber"
+    [pageSize]="artworkParams?.pageSize">
+  </app-paging-header>
+  <div class="btn-toolbar">
+    <div class="d-flex justify-content-between align-items-center pt-2 pb-2">
+      <div class="d-flex gap-2">
+        @if ((accountService.currentUser$ | async) && (accountService.isAdmin$ | async)  ) {
+          <button
+            [class.active]="sidenavService.gallerySidenavIsExpanded"
+            (click)="toggleCollectionInformation()"
+            class="grs-btn"
+            type="button"
+            [tooltip]="'Collection Information'"
+            position="below"
+            [hideDelay]="50">
+            <i class="fa fa-info"></i>
+          </button>
+        }
+      </div>
+      <!-- <app-search-box *ngIf="appConfigService.showGalleryToolbarSearchBox" [hasBtn]="true"></app-search-box>
+      <app-sort-box *ngIf="appConfigService.showGalleryToolbarSortOptions" [sort]=" artworkParams!.sort" [sortOptions]="sortOptions"></app-sort-box>-->
+      <!--<app-gallery-controls></app-gallery-controls>-->
+    </div>
+  </div>
+</div>
+<!--(onClick)="toggleCollectionInformation($event)"-->
+<!--position="{{sidenavService.gallerySidenavIsExpanded ? 'left' : 'right'}}"-->

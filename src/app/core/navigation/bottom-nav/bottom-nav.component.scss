@@ -1,0 +1,21 @@
+.bottom-bar {
+  position: sticky;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+  background-color: #fff;
+  color: white;
+  text-align: center;
+  border-top: 1px solid var(--grs-border-color);
+
+  &__content {
+    width: 100%;
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

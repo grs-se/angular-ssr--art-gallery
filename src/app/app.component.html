@@ -1,0 +1,20 @@
+<ngx-spinner type="ball-clip-rotate"
+  ><h6 style="color: white">Loading...</h6></ngx-spinner
+>
+<!--<ngx-spinner type="ball-clip-rotate"></ngx-spinner>-->
+
+<app-nav-bar></app-nav-bar>
+<app-main-nav-mobile></app-main-nav-mobile>
+
+<div class="app-wrapper">
+  <!--<app-side-nav></app-side-nav>
+  <app-nav-bar *ngIf="router.url != '/'"></app-nav-bar>-->
+
+  <router-outlet
+    class="z-10"
+    (activate)="scrollUp($event)"
+  ></router-outlet>
+</div>
+<!--<app-footer></app-footer>-->
+<app-footer-v2></app-footer-v2>
+<!--<app-scroll-up></app-scroll-up>-->

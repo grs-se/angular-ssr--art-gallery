@@ -1,0 +1,31 @@
+@if ($any(bcService.breadcrumbs$ | async); as breadcrumbs) {
+  <div class="section-header__wrapper">
+    @if (breadcrumbs[breadcrumbs.length-1].label !== 'Home') {
+      <section
+        class="{{height}} section-header"
+        [style]="wrapperStyles">
+        <div class="row d-flex align-items-center">
+          <div class="col-9">
+            <!--<div class="col-9" *ngIf="breadcrumbs[breadcrumbs.length-1].label !== 'Gallery'">-->
+            <!--<h1 class="display-6">{{breadcrumbs[breadcrumbs.length-1].label | titlecase}}</h1>-->
+            <h4 class="" style="{{fontSize}}">{{prefix}}{{breadcrumbs[breadcrumbs.length-1].label | titlecase}}</h4>
+          </div>
+          <div class="col-3">
+            <xng-breadcrumb>
+              <ng-container *xngBreadcrumbItem="let breadcrumb">
+                {{breadcrumb | titlecase}}
+              </ng-container>
+            </xng-breadcrumb>
+            <!--<nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Library</li>
+            </ol>
+          </nav>-->
+        </div>
+      </div>
+    </section>
+  }
+</div>
+}
+

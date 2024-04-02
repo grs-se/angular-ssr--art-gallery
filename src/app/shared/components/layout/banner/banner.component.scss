@@ -1,0 +1,23 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+:host {
+  width: 100%;
+}
+
+
+  img {
+    /*    height: 50vh;
+    width: 100%;
+    object-fit: contain;*/
+    display: block;
+    margin: 0 auto;
+    height: calc((90vh - 170px) - 50px);
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+
+    @include respond($phone) {
+      height: 50vh;
+    }
+  }

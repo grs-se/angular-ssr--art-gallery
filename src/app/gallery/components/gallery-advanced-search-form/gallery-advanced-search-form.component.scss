@@ -1,0 +1,33 @@
+.gallery-header__search-box {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 9px 13px;
+  border: 1px solid var(--grs-border-color);
+  width: 184px;
+}
+
+h6 {
+  font-size: 11px;
+}
+
+.show-more-options {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+}
+
+.show-more-options-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  border: 1px solid #999;
+  border-radius: 100%;
+  font-size: 11px;
+  height: 12px;
+  width: 12px;
+  //   font-weight: bold;
+  margin-left: 6px;
+}

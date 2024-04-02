@@ -1,0 +1,8 @@
+<div class="selected-works">
+  @for (artwork of artworks; track artwork) {
+    <div>
+      <img src="{{artwork.imageUrl}}" />
+      <p>{{artwork.title}}</p>
+    </div>
+  }
+</div>

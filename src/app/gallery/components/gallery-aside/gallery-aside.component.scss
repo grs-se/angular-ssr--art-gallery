@@ -1,0 +1,105 @@
+:host {
+}
+
+.gallery-aside {
+  height: 100%;
+  background: rgb(69,69,69);
+  background: #fff;
+  /*background: rgb(50,50,50);*/
+  max-width: 33vw;
+  width: 28vw;
+  position: sticky !important;
+  top: var(--grs-navbar-height);
+  height: calc(100vh - var(--grs-navbar-height));
+  border-right: 1px solid #dee2e6;
+  z-index: 30;
+  border-left: 1px solid #dee2e6;
+
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    left: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+  }
+
+  &__toggle-btn__prev,
+  &__toggle-btn__next {
+    color: #fff;
+    color: #444;
+    background: rgb(69,69,69);
+    background: var(--grs-bg-light);
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    border-width: 1px;
+    border: 1px solid #dee2e6;
+  }
+
+  &__close-btn {
+    color: #fff;
+    color: #444;
+    background: rgb(69,69,69);
+    background: var(--bg-light);
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    border-width: 1px;
+    border: 1px solid #dee2e6;
+  }
+
+  &__content {
+    /*padding: 1.5rem 1.15rem;*/
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    justify-content: flex-end;
+    padding: 0.5rem 1rem 2rem;
+  }
+
+  a {
+    display: block;
+    height: max-content;
+    width: max-content;
+  }
+
+  &__figure-img {
+    max-height: 50vh;
+    max-width: 100%;
+
+    &__wrapper {
+      padding: 0.5rem 0;
+      /*      border-top: 1px solid rgb(44,44,44);
+      border-bottom: 1px solid rgb(44,44,44);*/
+      border-top: 1px solid var(--bs-border-color);
+      border-bottom: 1px solid var(--bs-border-color);
+      background: rgb(50,50,50);
+      background: #fff;
+      background: var(--grs-bg-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .well {
+    background: rgb(50,50,50);
+    background: var(--bg-light);
+  }
+
+  p {
+    color: #fff;
+    color: #444;
+  }
+
+  dl {
+    font-size: var(--grs-text-sm) !Important;
+    color: #fff;
+    color: #444;
+  }
+}

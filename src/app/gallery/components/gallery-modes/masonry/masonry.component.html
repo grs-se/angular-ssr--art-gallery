@@ -1,0 +1,20 @@
+@if (artworks) {
+  <section>
+    @for (artwork of artworks; track artwork) {
+      <div class="masonry-img">
+        <img src="{{artwork?.imageUrl}}" alt="">
+      </div>
+    }
+  </section>
+}
+
+<!--<div>
+<section>
+  <div ng-repeat="img in imgs" style="width:{{artwork?.imageUrl.width*200/img.height}}px;flex-grow:{{artwork?.imageUrl.width*200/artwork?.imageUrl.height}}">
+    <i style="padding-bottom:{{artwork?.imageUrl.height/artwork?.imageUrl.width*100}}%"></i>
+    <img src="{{artwork?.imageUrl.url}}" alt="">
+  </div>
+</section>
+</div>
+-->
+<!--<img (load)="loadedImg($event)" [src]="imageSrc">-->

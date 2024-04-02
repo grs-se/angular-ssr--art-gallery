@@ -1,0 +1,214 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+.collections-overview {
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    padding: 2.75rem;
+    margin: 0 auto;
+
+    @include respond($big-desktop) {
+      gap: 1.75rem;
+      /*grid-template-columns: repeat(3, 1fr);*/
+    }
+
+    @include respond($tablet-landscape) {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 1rem 2.75rem;
+    }
+
+    @include respond($tablet-portrait) {
+      gap: 1.1rem;
+      padding: 1rem;
+      /*gap: 0.5rem;*/
+    }
+
+    @include respond($phone) {
+      width: 100%;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.7rem;
+      padding: 1rem 0 2.75rem;
+      /*display: block;*/
+    }
+  }
+
+  &__card {
+    /*width: 33.333%;*/
+    /*height: max-content;*/
+    height: 100%;
+    border-radius: 5px;
+    /*height: 32rem;*/
+    /*max-height: 32rem;*/
+    /*    aspect-ratio: 1;*/
+    background-color: rgb(69,69,69);
+    /*/*width: 100%;*/
+    list-style-type: none;
+    /*    display: flex;
+    flex-direction: column;*/
+    background-color: #fff;
+    background: rgba(255,255,255,0.8);
+    background: #eee;
+    /*gap: 2rem;*/
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);
+
+    @include respond($phone) {
+      border: 2px solid rgb(69,69,69);
+    }
+
+    .img-container {
+      overflow: clip;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      height: 22rem;
+
+      @include respond($tablet-landscape) {
+        /*        flex-direction: column;
+        height: max-content;*/
+        padding: 0;
+        height: 16rem;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 3px 6px 0 rgb(0 0 0 / 40%);
+      box-sizing: border-box;
+      /*margin: -2px;*/
+      /*border: 2px solid white;*/
+    }
+
+    &:hover .collections-overview__card-header a {
+      /*color: cornflowerblue !important;*/
+      /*      text-decoration: underline;
+      color: cornflowerblue !important;*/
+    }
+
+    &:hover .collections-overview__card-header .category-count {
+      text-decoration: underline;
+      color: cornflowerblue !important;
+    }
+
+    &:hover {
+      transition: background-color 0.4s ease;
+      /* transform: scale(1.05);*/
+    }
+  }
+
+  &__card-header,
+  &__card-details {
+    /*    background-color: rgb(69,69,69);
+    color: white;*/
+    padding: 1rem 2.5rem;
+
+    @include respond($phone) {
+      padding: 1.15rem 1.5rem;
+    }
+  }
+
+  &__card-header {
+    /*display: inline-block;*/
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+
+    @include respond($phone) {
+      /*display: block;*/
+    }
+
+    .category-name {
+      font-family: "PT Serif", serif;
+      font-size: 1.5rem;
+      /*text-decoration: underline;*/
+      font-weight: bold;
+      letter-spacing: 1px;
+      /*text-transform: it;*/
+
+      @include respond($tablet-landscape) {
+        font-size: 1.2rem;
+      }
+    }
+
+    .category-date {
+      font-family: "PT Serif", serif;
+      /*font-weight: bold;*/
+    }
+  }
+
+  &__card-details {
+    /*height: fit-content;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: start;
+    /*line-height: 1rem;*/
+    /*line-height: 0.8rem;*/
+
+
+    .category-description {
+      font-size: 1em;
+
+      @include respond($phone) {
+        font-size: 0.875em;
+        /*display: none;*/
+      }
+    }
+
+ /*   .category-count {
+      
+    }*/
+
+    p {
+      margin-bottom: 0.1rem;
+
+      @include respond($tablet-landscape) {
+        font-size: 0.9rem;
+        /*  padding: 0.5rem;*/
+      }
+    }
+    /*letter-spacing: 1px;*/
+  }
+
+  &__card-img {
+    /*aspect-ratio: 1 auto;*/
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 26rem;
+    /*aspect-ratio: 1;*/
+
+    @include respond($phone) {
+      /*height: max-content;*/
+      /*      margin: 0 auto;
+      height: auto;*/
+    }
+  }
+}
+
+.col-l {
+  max-width: 70%;
+}
+
+.col-r {
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  /*white-space: nowrap;*/
+}
+

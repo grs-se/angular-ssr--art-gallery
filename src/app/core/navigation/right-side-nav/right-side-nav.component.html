@@ -1,0 +1,108 @@
+<!--div *ngIf="showRightSideNav"
+#rightSidenav
+class="right-sidenav">-->
+<div class="right-sidenav">
+  <nav class="right-sidenav__nav">
+    <ul class="right-sidenav__nav-items">
+      <li class="right-sidenav__nav-item">
+        <a routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}"
+          class="right-sidenav__nav-link">
+          Home
+        </a>
+      </li>
+      <li class="right-sidenav__nav-item">
+        <a routerLink="/gallery/{{galleryRoutes.galleryName ? galleryRoutes.galleryName : '' }}"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}"
+          class="right-sidenav__nav-link">
+          Gallery
+        </a>
+      </li>
+      <li class="right-sidenav__nav-item">
+        <a routerLink="/contact"
+          routerLinkActive="active"
+          class="right-sidenav__nav-link">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  @if (!(accountService.isAdmin$ | async) && (accountService.currentUser$ | async)) {
+    <div class="d-flex align-items-center">
+      <a routerLink="/basket" class="position-relative">
+        <i class="fa fa-shopping-cart fa-2x me-5 text-dark"></i>
+        @if ((basketService.basketSource$ | async); as basket) {
+          <div class="cart-no">
+            {{getCount(basket.items)}}
+          </div>
+        }
+      </a>
+    </div>
+  }
+  <!--Only display if user is not logged in-->
+  @if ((accountService.currentUser$ | async) === null) {
+    <a routerLink="/account/login" class="btn btn-sm btn-outline-secondary me-2">Login</a>
+    <!--        <a routerLink="/account/register" class="btn btn-outline-secondary me-2">Register</a>
+    -->
+  }
+
+  @if (accountService.currentUser$ | async; as user) {
+    <div dropdown class="dropdown ms-3" style="cursor: pointer;">
+      <a dropdownToggle class="dropdown-toggle">
+        <strong>{{user.displayName}}</strong>
+      </a>
+      <ul *dropdownMenu class="dropdown-menu dropdown-menu-right text-small">
+        <li class="py-1">
+          @if ((isAdmin$ | async)) {
+            <a routerLink="/admin" routerLinkActive="active" class="dropdown-item">
+              Dashboard
+            </a>
+          }
+        </li>
+        @if (!(accountService.isAdmin$ | async) && (accountService.currentUser$ | async)) {
+          <li class="py-1">
+            <a class="dropdown-item" routerLink="/basket">
+              <i class="fa fa-shopping-cart me-3"></i> View basket
+            </a>
+          </li>
+          <li class="py-1">
+            <a class="dropdown-item" routerLink="/orders">
+              <i class="fa fa-history me-3"></i> View orders
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+        }
+        <li class="py-1">
+          <a (click)="accountService.logout()" class="dropdown-item">
+            <i class="fa fa-sign-out me-3"></i> Logout
+          </a>
+        </li>
+        <!-- <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>-->
+      </ul>
+    </div>
+  }
+
+
+
+  <!--    <div class="dropdown text-end">
+  <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+  </a>
+  <ul class="dropdown-menu text-small">
+    <li><a class="dropdown-item" href="#">New project...</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Profile</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Sign out</a></li>
+  </ul>
+</div>-->
+<!--</div>-->
+</div>
+<!--</div>
+-->

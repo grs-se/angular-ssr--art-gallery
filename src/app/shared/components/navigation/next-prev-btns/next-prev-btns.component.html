@@ -1,0 +1,63 @@
+@if (style === 1) {
+  <div class="next-prev-btns__style-1__container">
+    <div class="next-prev-btns__style-1__wrapper">
+      <button
+        class="prev"
+        (click)="getPrev($event)"
+        >
+        Prev
+      </button>
+      <!-- <ng-content /> -->
+      <div class="count-index">
+        @if (
+          showCountAndIndex &&
+          index != undefined &&
+          totalCount &&
+          totalCount > 0
+          ) {
+          <span
+            >
+            {{ index }}/{{ totalCount }}
+          </span>
+        }
+      </div>
+      <button
+        class="active next"
+        (click)="getNext($event)"
+        >
+        Next
+      </button>
+    </div>
+  </div>
+}
+
+@if (style === 2) {
+  @if (totalCount != undefined && index) {
+    <header
+      class="index-total-count"
+      >
+      <button
+        (click)="getPrev($event)"
+        class="btn-prev"
+      ></button>
+      <ng-content #2 />
+      <div class="count-index">
+        @if (
+          showCountAndIndex &&
+          index != undefined &&
+          totalCount &&
+          totalCount > 0
+          ) {
+          <span
+            >
+            {{ index }}/{{ totalCount }}
+          </span>
+        }
+      </div>
+      <button
+        (click)="getNext($event)"
+        class="btn-next"
+      ></button>
+    </header>
+  }
+}

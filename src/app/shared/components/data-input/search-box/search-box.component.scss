@@ -1,0 +1,79 @@
+/*.form-control {
+  display: block;
+  width: 100%;*/
+/*width: max-content;*/
+/*padding: 0.5rem 1rem;*/
+/*font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.49;
+}
+
+.form-select {
+  font-size: 0.8em;
+  font-weight: 500;
+}*/
+
+.grs-search-box__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.grs-search-box {
+  width: 100%;
+}
+
+.grs-search-box .grs-search-box__form {
+  position: relative;
+}
+
+.grs-search-box .grs-search-input {
+  width: 100%;
+  padding: 3px 24px 3px 36px;
+  display: block;
+  width: 100%;
+  /*font: "Nunito", sans-serif;*/
+  font:
+    300 13px/14px "Lucida Sans",
+    sans-serif;
+  color: #aaaaaa;
+  background-color: #fff;
+  background-clip: padding-box;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid var(--grs-border-color);
+  border-radius: 0;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  box-shadow: 0 1px 3px #aaaaaa;
+}
+
+// Only focus-visible necessary
+.grs-search-box .grs-search-input:focus-visible,
+.grs-search-box .grs-search-input:focus,
+.grs-search-box .grs-search-input:focus-within {
+  outline: none !important;
+  /*border: none !Important;*/
+}
+
+.grs-search-box .grs-search-box-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  -webkit-transform: translateY(-48%);
+  -ms-transform: translateY(-48%);
+  transform: translateY(-48%);
+}
+
+.svg-inline--fa {
+  position: absolute;
+  height: 12px;
+  display: inline-block;
+  color: #aaaaaa;
+}
+
+/*.icon-img {
+  height: 1.75rem;*/
+/*fill: var(--bg-primary--shade-4);*/
+/*}*/

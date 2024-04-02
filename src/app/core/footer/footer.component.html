@@ -1,0 +1,8 @@
+@if (!(accountService.isAdmin$ | async)) {
+  <div class="footer-utility-spacer"></div>
+  <footer class="footer fixed-bottom my-5">
+    <div class="container-fluid">
+      <small class="text-muted m-5">All content copyright© George Rice-Smith, {{getCurrentYear()}} </small>
+    </div>
+  </footer>
+}

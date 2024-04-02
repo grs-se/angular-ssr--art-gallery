@@ -1,0 +1,29 @@
+.cp__btn:active {
+  border: 1px solid cornflowerblue;
+}
+
+.cp__icon {
+  height: 1.5rem;
+  filter: invert(35%);
+}
+
+.fa-bookmark {
+  font-size: .7rem;
+  filter: invert(35%);
+}
+
+.gallery-switch-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  border: 1px solid #e3e6ed;
+}
+/*
+.cp__btn {
+  height: 1rem;
+}
+*/

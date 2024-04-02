@@ -1,0 +1,246 @@
+@use "mixins" as *;
+/*@use "variables" as *;*/
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /*margin: 2rem 3rem;*/
+
+  @include respond($tablet-landscape) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond($tablet-portrait) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.grid-cols--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols--1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grs-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*gap: 0.75rem;*/
+  /*background-color: transparent;*/
+  /*display: none;*/
+}
+
+.grid-style--1 {
+  grid-gap: 1rem;
+
+  .card-style--1 {
+    background: #fff;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    /*box-shadow: var(--shadow-sm);*/
+
+
+    @include respond($big-desktop) {
+      border-bottom-left-radius: var(--grs-border-radius-sm);
+      border-bottom-right-radius: var(--grs-border-radius-sm);
+    }
+
+    @include respond($tablet-portrait) {
+      /*margin: 0 auto;*/
+    }
+
+    @include respond($phone) {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .image-container :hover {
+    /*cursor: pointer;*/
+    opacity: 1;
+    /*& button {
+    transform: none;
+    opacity: 1;
+  }*/
+  }
+
+  .grid-card__image {
+    /*object-fit:contain;*/
+    object-fit: contain;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    max-height: 22rem;
+    aspect-ratio: attr(width) / attr(height);
+
+    &:hover {
+    }
+
+    @include respond($big-desktop) {
+      /*max-height: 2rem;*/
+      /*padding: 0 0.75rem;*/
+      padding: 0.5rem;
+    }
+
+    @include respond($tablet-landscape) {
+      padding: 0;
+      max-height: 20rem;
+    }
+    /**/
+    @include respond($tablet-portrait) {
+      padding: 0;
+      max-height: 18rem;
+      /*height: 100%;*/
+      /*height: 360px;*/
+    }
+
+    @include respond($phone) {
+      max-height: 26rem;
+    }
+  }
+  /*.image-container {
+  display: flex;
+  justify-content: center;
+  height: 80%;
+}*/
+  /*img:hover .image-container--outer {
+  background: #fff;
+}
+*/
+  .btns-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hover-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--grs-hover-overlay-white);
+    opacity: 0;
+    transition: all 0.5s;
+    /*  & button {
+    z-index: 10;
+    transition: all 0.5s;
+  }*/
+    /*  & button:first-of-type {
+    transform: translateX(-2rem);
+  }
+
+  & button:last-of-type {
+    transform: translateX(2rem);
+  }*/
+  }
+
+  @keyframes scale {
+    to {
+      transform: scale(1.2);
+    }
+  }
+  /*img {
+  object-fit: cover;
+  height: 66rem;
+}*/
+
+
+
+  .btn {
+    width: 30%;
+    height: 3rem;
+  }
+
+  .image:hover {
+  }
+  /*a {
+  font-size: 0.8rem;
+}*/
+  /*a:hover {
+  color: var(--grs-theme-hyperlink);
+}*/
+
+  a {
+    color: var(--grs-color-primary);
+  }
+  /*a.active {*/
+  /*font-weight: bold;*/
+  /*}
+
+a:visited {*/
+  /*color: var(--grs-theme-visited--dark-mode);*/
+  /*color: var(--grs-theme-visited--light-mode);
+}*/
+
+
+  a:not(:hover) {
+    text-decoration: none;
+    color: rgba(33, 37, 41, 0.75);
+  }
+
+  .card-details {
+    margin-top: 0.5rem !important;
+    // remove
+    margin-left: 4rem;
+    padding-bottom: 2rem;
+
+    @include respond($phone) {
+      margin-left: 1rem;
+    }
+  }
+
+  .card-details__row > * {
+    padding-right: 0.2rem;
+  }
+  /*.card-details__row:first-child:after {
+    content: ",";
+}*/
+
+  .artwork-title {
+    font-size: 0.8rem;
+    display: flex;
+    display: inline-block;
+    font-style: italic;
+    line-height: 1rem;
+    /*letter-spacing: 0.3px;*/
+    /*font-size: 1em;*/
+    /* &:active {
+
+  }*/
+    :after {
+      content: ", ";
+    }
+    /*  &:hover {
+    color: cornflowerblue;
+  }*/
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+
+
+  .card-details__row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    padding-left: 3.2rem;
+
+    @include respond($phone) {
+      padding-left: 0;
+    }
+
+    small:after {
+      content: " ";
+    }
+  }
+}

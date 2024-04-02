@@ -1,0 +1,20 @@
+.selected-works {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  gap:56px;
+  padding: 56px;
+
+  .image-container {
+    display: block;
+    height: 100%
+  }
+
+  img {
+    height: 25rem;
+    width: auto;
+  }
+}

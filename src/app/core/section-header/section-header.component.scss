@@ -1,0 +1,32 @@
+@use 'variables' as *;
+@use 'mixins'as *;
+
+h4 {
+  color: #1F2328;
+  font-weight: 800;
+
+}
+
+.section-header {
+  padding-left: 3rem;
+
+  @include respond($phone) {
+    padding: 1.25rem;
+  }
+}
+
+.section-header__wrapper {
+  background-color: #f5f5f5;
+}
+
+.col-9 {
+  @include respond($phone) {
+    width: 50%;
+  }
+}
+
+.col-3 {
+  @include respond($phone) {
+    width: 50%;
+  }
+}

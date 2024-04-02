@@ -1,0 +1,503 @@
+<form
+  class="mt-4"
+  #artworkForm="ngForm"
+  (ngSubmit)="onSubmit(artworkForm.valid && artworkForm.value)"
+>
+  <div class="row">
+    <div class="d-flex gap-2 mb-3">
+      @if (artwork?.isArchived === false) {
+        <div class="d-flex align-items-center gap-2">
+          <button
+            (click)="addToArchive()"
+            type="button"
+            class="btn btn-primary d-flex align-items-center gap-1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-archive"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
+              ></path>
+            </svg>
+            Archive
+          </button>
+          <span class="text-info">Artwork is on display</span>
+        </div>
+      }
+
+      @if (artwork?.isArchived === true) {
+        <button
+          (click)="removeFromArchive()"
+          type="button"
+          class="btn btn-success"
+        >
+          <i class="fa fa-plus"></i>
+          <!--  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+          <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"></path>
+        </svg>-->
+          Show on profile
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-6">
+      <label for="title">Artwork Title</label>
+      <input
+        [ngClass]="{
+          'is-invalid': title.invalid && (title.dirty || title.touched)
+        }"
+        required
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="Artwork Title"
+        name="title"
+        #title="ngModel"
+        [(ngModel)]="artwork!.title"
+      />
+
+      @if (title.invalid && (title.dirty || title.touched)) {
+        <div class="invalid-feedback">
+          @if (title.errors?.["required"]) {
+            <div>Artwork title is required</div>
+          }
+        </div>
+      }
+    </div>
+    <div class="form-group col-md-6">
+      <label for="date">Date</label>
+      <input
+        [ngClass]="{
+          'is-invalid': date.invalid && (date.dirty || date.touched)
+        }"
+        required
+        type="text"
+        class="form-control"
+        id="date"
+        name="date"
+        #date="ngModel"
+        [(ngModel)]="artwork!.dateProduced"
+      />
+      @if (date.invalid && (date.dirty || date.touched)) {
+        <div class="invalid-feedback">
+          @if (date.errors?.["required"]) {
+            <div>Artwork date is required</div>
+          }
+        </div>
+      }
+      <!--<app-date-picker [formControl]="artwork?.dateProduced" [label]="Date" [maxDate]="maxDate"></app-date-picker>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-6">
+      <label for="price">Price</label>
+      <input
+        [ngClass]="{
+          'is-invalid': price.invalid && (price.dirty || price.touched)
+        }"
+        required
+        type="text"
+        class="form-control"
+        id="price"
+        placeholder="Price"
+        currencyMask
+        name="price"
+        #price="ngModel"
+        pattern="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(\.[0-9][0-9])?$"
+        [min]="0.01"
+        [ngModel]="+artwork!.price | number: '1.2-2'"
+        (ngModelChange)="updatePrice(+$event)"
+      />
+
+      @if (price.invalid && (price.dirty || price.touched)) {
+        <div class="invalid-feedback">
+          @if (price.errors?.["required"]) {
+            <div>Artwork price is required</div>
+          }
+          @if (price.errors?.["pattern"]) {
+            <div>Artwork price needs to be decimal value</div>
+          }
+          @if (price.errors?.["min"]) {
+            <div>Artwork price must be greater than zero</div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="location">Location</label>
+      @if (addLocationMode) {
+        <div class="d-flex flex-row input-group">
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fa fa-plus"></i>
+            <span class="visually-hidden">Button</span>
+          </button>
+          <input
+            [ngClass]="{
+              'is-invalid':
+                location.invalid && (location.dirty || location.touched)
+            }"
+            required
+            type="text"
+            class="form-control"
+            id="location"
+            placeholder="Input location"
+            name="location"
+            #location="ngModel"
+            [(ngModel)]="artwork!.locationProducedId"
+          />
+        </div>
+      } @else {
+        <div class="d-flex flex-row input-group">
+          <button
+            (click)="toggleAddLocationMode()"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            <i class="fa fa-plus"></i>
+            <span class="visually-hidden">Button</span>
+          </button>
+          <select
+            id="location"
+            class="form-control"
+            name="artworkLocationId"
+            [(ngModel)]="artwork!.locationProducedId"
+            required
+          >
+            @for (location of locations; track location.id) {
+              <option
+                [selected]="artwork!.locationProducedId === location.id"
+                [ngValue]="location.id"
+              >
+                {{ location.name }}
+              </option>
+            }
+          </select>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="medium">Medium</label>
+      @if (addMediumMode) {
+        <div class="d-flex flex-row input-group">
+          <button
+            type="button"
+            (click)="toggleAddMediumMode()"
+            class="btn btn-outline-secondary"
+          >
+            <i class="fa fa-plus"></i>
+            <span class="visually-hidden">Button</span>
+          </button>
+          <input
+            [ngClass]="{
+              'is-invalid': medium.invalid && (medium.dirty || medium.touched)
+            }"
+            required
+            type="text"
+            class="form-control"
+            id="medium"
+            placeholder="Input medium"
+            name="medium"
+            #medium="ngModel"
+            [(ngModel)]="artwork!.artworkMediumId"
+          />
+        </div>
+      } @else {
+        <div class="d-flex flex-row input-group">
+          <button
+            (click)="toggleAddMediumMode()"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            <i class="fa fa-list"></i>
+            <span class="visually-hidden">Button</span>
+          </button>
+          <select
+            id="medium"
+            class="form-control"
+            name="artworkMediumId"
+            [(ngModel)]="artwork!.artworkMediumId"
+            required
+          >
+            @for (medium of mediums; track medium.id) {
+              <option
+                [selected]="artwork!.artworkMediumId === medium.id"
+                [ngValue]="medium.id"
+              >
+                {{ medium.name }}
+              </option>
+            }
+          </select>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <label for="description">Description</label>
+      <textarea
+        [ngClass]="{
+          'is-invalid':
+            description.invalid && (description.dirty || description.touched)
+        }"
+        required
+        #description="ngModel"
+        class="form-control"
+        id="description"
+        [(ngModel)]="artwork!.description"
+        name="description"
+        rows="3"
+      ></textarea>
+
+      @if (description.invalid && (description.dirty || description.touched)) {
+        <div class="invalid-feedback">
+          @if (description.errors?.["required"]) {
+            <div>Artwork price is required</div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="category">Category</label>
+      @if (addCategoryMode) {
+        <div class="d-flex flex-row input-group">
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fa fa-plus"></i>
+            <span class="visually-hidden">Button</span>
+          </button>
+          <input
+            [ngClass]="{
+              'is-invalid':
+                category.invalid && (category.dirty || category.touched)
+            }"
+            required
+            type="text"
+            class="form-control"
+            id="category"
+            placeholder="Input category"
+            name="category"
+            #category="ngModel"
+            [(ngModel)]="artwork!.artworkCategoryId"
+          />
+        </div>
+      } @else {
+        <div class="d-flex flex-row input-group">
+          <button
+            (click)="toggleAddCategoryMode()"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            <i class="fa fa-list"></i>
+            <span class="visually-hidden">Button</span>
+          </button>
+          <select
+            id="category"
+            class="form-control"
+            name="artworkCategoryId"
+            [(ngModel)]="artwork!.artworkCategoryId"
+            required
+          >
+            @for (category of categories; track category.id) {
+              <option
+                [selected]="artwork!.artworkCategoryId === category.id"
+                [ngValue]="category.id"
+              >
+                {{ category.name }}
+              </option>
+            }
+          </select>
+        </div>
+      }
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="collection">Collection</label>
+      <!--      <ng-container *ngIf="
+            addCollectionMode;
+            then collectionInputBlock;
+            else collectionSelectBlock
+          "></ng-container>-->
+      @switch (addCollectionMode) {
+        @case (true) {
+          <div class="d-flex flex-row input-group">
+            <button type="button" class="btn btn-outline-secondary">
+              <i class="fa fa-plus"></i>
+              <span class="visually-hidden">Button</span>
+            </button>
+            <input
+              [ngClass]="{
+                'is-invalid':
+                  collection.invalid && (collection.dirty || collection.touched)
+              }"
+              required
+              type="text"
+              class="form-control"
+              id="collection"
+              placeholder="Input collection"
+              name="collection"
+              #collection="ngModel"
+              [(ngModel)]="artwork!.artworkCollectionId"
+            />
+          </div>
+        }
+
+        @case (false) {
+          <div class="d-flex flex-row input-group">
+            <button
+              (click)="toggleAddCollectionMode()"
+              type="button"
+              class="btn btn-outline-secondary"
+            >
+              <i class="fa fa-plus"></i>
+              <span class="visually-hidden">Button</span>
+            </button>
+            <select
+              id="collection"
+              class="form-control"
+              name="artworkCollectionId"
+              [(ngModel)]="artwork!.artworkCollectionId"
+              required
+            >
+              @for (collection of collections; track collection) {
+                <option
+                  [selected]="artwork!.artworkCollectionId === collection.id"
+                  [ngValue]="collection.id"
+                >
+                  {{ collection.name }}
+                </option>
+              }
+            </select>
+          </div>
+        }
+      }
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="type">Type</label>
+      <select
+        id="type"
+        class="form-control"
+        name="artworkTypeId"
+        [(ngModel)]="artwork!.artworkTypeId"
+        required
+      >
+        @for (type of types; track type) {
+          <option
+            [selected]="artwork!.artworkTypeId === type.id"
+            [ngValue]="type.id"
+          >
+            {{ type.name }}
+          </option>
+        }
+      </select>
+    </div>
+    <!--   <div class="form-group col-md-6">
+          <label for="tags">Tags</label>-->
+    <!--<ngx-tags-input class="form-control input-lg" [(ngModel)]="artwork!.tagIds"></ngx-tags-input>-->
+    <!--      <ngx-tags-input [maxTags]="maxTags" [placeholder]="placeholder"
+        (tagsChange)="displayTags($event)" [(ngModel)]="artwork!.tagIds">{{artwork!.tagIds}}</ngx-tags-input>-->
+    <!--<ngx-tags-input class="form-control input-lg" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="tags" name="tags"></ngx-tags-input>-->
+    <!--      <div class="u-tagsinput">
+        <input type="text" value="HTML5, CSS3, JavaScript, jQuery" data-role="tagsinput">
+      </div>-->
+    <!--     <input [ngClass]="{'is-invalid': tags.invalid && (tags.dirty || tags.touched)}"
+      required
+      type="text"
+      class="form-control"
+      id="tags"
+      placeholder="Tags"
+      name="tags"
+      #tags="ngModel"
+      [(ngModel)]="artwork!.tagsId">-->
+    <!--      <select id="tags" class="form-control" name="tagsId" [(ngModel)]="artwork!.artworkTagIds" required>
+      <option *ngFor="let tag of tags"
+
+        [selected]="artwork!.artworkTagIds === tag.id"
+      [ngValue]="tag.id">{{tag.name}}</option>
+    </select>-->
+    <!--  <select id="tags" class="form-control" name="artworkTagId" [(ngModel)]="artwork!.artworkTagIds" required>
+    <option *ngFor="let tag of tags"
+      [selected]="artwork!.artworkTagIds"
+    [ngValue]="tag.id">{{tag.name}}</option>
+  </select>-->
+    <!--</div>-->
+  </div>
+  <button
+    [disabled]="!artworkForm.valid"
+    type="submit"
+    class="btn btn-primary my-3 float-right"
+  >
+    Submit
+  </button>
+
+  <!--  <div class="col-lg-6">
+<app-edit-product-photos [artwork]="artwork"></app-edit-product-photos>
+</div>-->
+  <!--
+<div class="py-5 border">
+  <div class="container">
+    <ng-container *ngIf="!addImageMode">
+      <div class="d-flex justify-content-between mb-3">
+        <h4>Artwork Images</h4>
+        <button class="btn btn-primary" (click)="addImageModeToggle()">
+          Add New Image
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-4" *ngFor="let image of artwork?.images">
+          <div class="card">
+            <img class="card-img-top h-auto w-100" src="{{image.imageUrl}}" alt="{{image.fileName}}" />
+            <div class="btn-group" style="width: 100%">
+              <button type="button"
+                (click)="setMainImage(image.id)"
+                [disabled]="image.isMain"
+                class="{{image.isMain ? 'btn btn-success' : 'btn btn-outline-success'}}"
+                style="width: 50%">
+                Set Main
+              </button>
+              <button type="button"
+                (click)="deleteImage(image.id)"
+                [disabled]="image.isMain"
+                class="btn btn-outline-danger"
+                style="width: 50%">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="addImageMode">
+      <div class="d-flex justify-content-between mb-3">
+        <h3>Add new artwork image</h3>
+        <button class="btn btn-outline-secondary" (click)="addImageModeToggle()">Cancel</button>
+      </div>
+      <div class="progress form-group" *ngIf="progress > 0">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+          {{progress}}%
+        </div>
+      </div>
+      <app-photo-widget (addFile)="uploadFile($event)"></app-photo-widget>
+    </ng-container>
+  </div>
+</div>-->
+  <!--   <div class="col-lg-6">
+<app-add-artwork-photos [artwork]="artwork"></app-add-artwork-photos>
+</div>-->
+</form>

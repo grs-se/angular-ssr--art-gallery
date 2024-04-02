@@ -1,0 +1,10 @@
+<div class="toast"
+     [@fadeAnimation]="{value: animationState, params:
+        { fadeIn: toastConfig.animation?.fadeIn, fadeOut: toastConfig.animation?.fadeOut }}"
+     (@fadeAnimation.done)="onFadeFinished($event)">
+     {{iconType}}
+  <!--<mat-icon>{{ iconType }}</mat-icon>-->
+  <div>{{ data.text }}</div>
+  <button (click)="close()"></button>
+  <!--<mat-icon (click)="close()">close</mat-icon>-->
+</div>

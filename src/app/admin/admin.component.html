@@ -1,0 +1,122 @@
+@if (artworks) {
+  <section class="admin-page d-flex flex-row">
+    <!--<app-side-bar></app-side-bar>-->
+    <div class="container">
+      <div class="row">
+        <!--<nav id="sidebarMenu" class="pt-2 col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="sidebar-sticky pt-3">
+          <section>
+            <h6 class="text-secondary ms-3">Sort</h6>
+            <select class="form-select form-select-sm mb-4" (change)="onSortSelected($event)">
+              <option *ngFor="let sort of sortOptions"
+                [selected]="artworkParams.sort === sort.value"
+                [value]="sort.value">
+                {{sort.name}}
+              </option>
+            </select>
+            <h6 class="text-secondary ms-3">Category</h6>
+            <ul class="list-group my-3">
+              <li *ngFor="let category of categories"
+                class="list-group-item list-group-item-action"
+                [class.active]="category.id === artworkParams.categoryId"
+                [value]="category.id"
+                (click)="onCategorySelected(category.id)">
+                {{category.name}}
+              </li>
+            </ul>
+          </section>
+        </div>
+      </nav>-->
+      <div class="col-lg-12">
+        <div class="d-flex justify-content-between my-3">
+          <header class="h2">Artwork List</header>
+          <button [routerLink]="['/admin/create']" class="btn btn-outline-success">Create new artwork</button>
+        </div>
+        <app-paging-header [totalCount]="totalCount"
+          [pageSize]="this.artworkParams.pageSize"
+        [pageNumber]="this.artworkParams.pageNumber"></app-paging-header>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <div class="py-2 text-uppercase">Id</div>
+                </th>
+                <th scope="col">
+                  <div class="py-2 text-uppercase">Artwork</div>
+                </th>
+                <th scope="col">
+                  <div class="py-2 text-uppercase">Name</div>
+                </th>
+                <th scope="col">
+                  <div class="py-2 text-uppercase">Price</div>
+                </th>
+                <!--   <th scope="col">
+                <div class="py-2 text-uppercase">Date</div>
+              </th>-->
+              <th scope="col">
+                <div class="py-2 text-uppercase">Archive</div>
+              </th>
+              <th scope="col">
+                <div class="py-2 text-uppercase">Edit</div>
+              </th>
+              <th scope="col">
+                <div class="py-2 text-uppercase">Delete</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (artwork of artworks; track artwork) {
+              <tr>
+                <td class="align-middle">{{artwork.id}}</td>
+                <td>
+                  <div class="p-1">
+                    <img src="{{artwork.imageUrl || '/assets/images/placeholder.png'}}" alt="{{artwork.title}}" class="img-fluid" style="max-height: 50px">
+                  </div>
+                </td>
+                <td class="align-middle"><h6>{{artwork.title}}</h6></td>
+                <td class="align-middle">{{artwork.price | currency : 'GBP'}}</td>
+                <td class="align-middle">
+                  <div class="btn-group">
+                    @if (artwork?.isArchived === true) {
+                      <button
+                        (click)="removeFromArchive(artwork.id)"
+                        type="button"
+                        class="btn btn-outline-success">
+                        <i class="fa fa-plus"></i>
+                        <span class="visually-hidden">Button</span>
+                      </button>
+                    }
+                    @if (artwork?.isArchived === false) {
+                      <button
+                        (click)="addToArchive(artwork.id)"
+                        type="button"
+                        class="btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+                          <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"></path>
+                        </svg>
+                        <span class="visually-hidden">Button</span>
+                      </button>
+                    }
+                  </div>
+                </td>
+                <td class="align-middle"><button [routerLink]="['edit', artwork.id]" class="btn btn-sm btn-warning">Edit</button></td>
+                <td class="align-middle"><button (click)="deleteArtwork(artwork.id)" class="btn btn-sm btn-danger">Delete</button></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      @if (totalCount > 0) {
+        <div class="d-flex justify-content-center">
+          <app-pager [pageSize]="artworkParams.pageSize"
+            [pageNumber]="artworkParams.pageNumber"
+            [totalCount]="totalCount"
+          (pageChanged)="onPageChanged($event)"></app-pager>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+</section>
+}

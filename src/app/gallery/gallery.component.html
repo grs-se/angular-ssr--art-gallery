@@ -1,0 +1,16 @@
+<div class="gallery">
+  <div class="gallery__container">
+
+    <app-gallery-side-nav [categories]="categories"
+      [collections]="collections"
+      [totalCount]="totalCount" />
+      <!--<app-gallery-overview></app-gallery-overview>-->
+      <router-outlet></router-outlet>
+      <!--<app-gallery-main></app-gallery-main>-->
+    </div>
+  </div>
+
+  @if (appConfigService.showGalleryScrollTop) {
+    <app-scroll-up
+      mode="text" />
+  }

@@ -1,0 +1,85 @@
+// MEDIA QUERY MANAGER
+
+/*
+    0 - 600px: Phone
+    600 - 900px: Tablet portrait
+    900 - 1200px: Tablet landscape
+    [1200 - 1800] is where base styles apply
+    1800px +: Big desktop
+
+*/
+
+$phone: 600px;
+$tablet-portrait: 900px;
+$tablet-landscape: 1200px;
+$big-desktop: 1800px;
+
+@mixin respond($breakpoint) {
+  @if $breakpoint <= $tablet-landscape {
+  /*  @media only screen and (max-width: $breakpoint) {
+      @content;
+    }*/
+      @media only screen and (max-width: calc(calc($breakpoint/16px) * 1em)) {
+      @content;
+    }
+  }
+  @else {
+   /* @media only screen and (min-width: $breakpoint) {
+      @content;
+    }*/
+    @media only screen and (min-width: calc(calc($breakpoint/16px) * 1em)) {
+      @content;
+    }
+  }
+}
+
+
+// MEDIA QUERY MANAGER
+/*$phone-portrait: 360px;
+$phone-md: 480px;
+$tablet-portrait: 601px;
+$tablet-landscape: 991px;
+$base: 1024px;
+$l-screen: 1280px;
+$xl-screen: 1440px;
+$xxl-screen: 1920px;*/
+
+/*$bp-xs: 480px;
+$bp-sm: 576px;
+$bp-med: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;
+$bp-xxl: 1400px;
+*/
+
+/*@media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }*/
+/*Mobile Tablet:*/
+/*@media screen and (min-width: 991px) {
+    grid-template-columns: repeat(3, 1fr);
+  }*/
+/*Mobile landscape:*/
+/*@media screen and (min-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }*/
+/*  @media screen and (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }*/
+/*Mobile portrait:*/
+/*@media screen and (max-width: 478px) {
+    grid-template-columns: repeat(1, 1fr);
+  }*/
+
+/*XXL Screen:*/
+/*  @media screen and (max-width: 1920px) {
+    grid-template-columns: repeat(2, 1fr);
+  }*/
+/*XL Screen:*/
+/*  @media screen and (max-width: 1440px) {
+    grid-template-columns: repeat(5, 1fr);
+  }*/
+/*L Screen:*/
+/*  @media screen and (max-width: 1280px) {
+    grid-template-columns: repeat(4, 1fr);
+  }*/

@@ -1,0 +1,9 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+
+:host {
+  @include respond($phone) {
+    display: none;
+  }
+}

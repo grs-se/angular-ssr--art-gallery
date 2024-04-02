@@ -1,0 +1,214 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+:host {
+  position: fixed;
+  width: 100%;
+  /*height: 100%;*/
+  top: 50px;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.open {
+  height: max-content;
+  position: relative;
+  display: block;
+  /*justify-content: space-between;*/
+  width: 100%;
+  /*padding-inline-start: 48px;*/
+}
+
+.main-nav-mobile__site-navigation {
+  display: none;
+  visibility: hidden;
+
+  @include respond($tablet-portrait) {
+    height: 0;
+    width: 0;
+    transition: width 300ms cubic-bezier(0.02, 0.68, 0.63, 0.98);
+    /*box-shadow: 0 4px 4px 0 rgba(60,64,67,.3), 0 8px 12px 6px rgba(60,64,67,.15);*/
+
+    &.is-expanded {
+      display: block;
+      visibility: visible;
+      height: calc(100vh - var(--grs-navbar-height));
+      height: max-content;
+      width: 100%;
+      top: var(--grs-navbar-height);
+      background: #222;
+      background: #2e2e2e;
+      z-index: 40;
+
+      @include respond($phone) {
+        width: 100%;
+        height: calc(100vh - var(--grs-navbar-height-mobile));
+        height: max-content;
+      }
+    }
+  }
+
+  &__header {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0 7px;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+  }
+
+  .main-list {
+    /*overflow-y: auto;*/
+  }
+
+  ul {
+    width: 100%;
+    padding: 0;
+  }
+
+  ul .li-elements-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    position: relative;
+  }
+
+  .li-elements-wrapper {
+    width: calc(100% - 40px);
+  }
+
+  li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    position: relative;
+    align-items: center;
+
+    &.active {
+      height: max-content;
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+
+    .li-hr {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin: 0px !important;
+      flex-shrink: 0 !important;
+      border-width: 0px 0px 1px !important;
+      border-style: solid !important;
+      border-color: rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.08)
+        rgba(255, 255, 255, 0.25) !important;
+      border-color: #fff !important;
+      opacity: 1;
+    }
+
+    .chevron-right {
+      height: 24px;
+      width: 24px;
+      fill: #787878;
+    }
+
+    .drawer-item-collapse,
+    .drawer-item-expand {
+      margin: auto;
+      height: 24px;
+      width: 24px;
+      fill: #fff;
+    }
+
+    svg {
+    }
+
+    a,
+    i {
+      /*font: normal 16px/24px "Univers LT Std 57 Condensed";*/
+    }
+
+    a {
+      margin: 0;
+      padding-inline-start: 13px;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      width: calc(100% - 38px);
+      border-right: 1px solid rgb(255, 255, 255, 0.2);
+      color: #fff !important;
+      text-transform: uppercase;
+      font: 300 16px/24px "Univers LT Std";
+      letter-spacing: 0.3px;
+    }
+  }
+
+  ul li .sub-list {
+    width: 100%;
+    padding-inline-start: 9px;
+
+    li {
+      &.open {
+        height: max-content;
+        position: relative;
+        display: block;
+        /*justify-content: space-between;*/
+        width: 100%;
+        /*padding-inline-start: 48px;*/
+      }
+
+      &.active {
+        height: max-content;
+        position: relative;
+        display: block;
+        /*justify-content: space-between;*/
+        width: 100%;
+        /*padding-inline-start: 48px;*/
+      }
+
+      a {
+      }
+
+      ul {
+      }
+
+      ul li a {
+        text-transform: capitalize;
+      }
+    }
+
+    hr {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin: 0px !important;
+      flex-shrink: 0 !important;
+      border-width: 0px 0px 1px !important;
+      border-style: solid !important;
+      border-color: #787878 !important;
+      border-color: #3d3d3d !important;
+      /*opacity: 0.2;*/
+      opacity: 1;
+    }
+  }
+
+  ul li .sub-list {
+    /*padding-inline-start: 9px;*/
+  }
+
+  ul li .sub-list a {
+    font: 300 16px/24px "Univers LT Std" !important;
+    padding-inline-start: 9px;
+    /*font: 300 16px/24px 'Encode Sans Condensed' !Important;*/
+
+    &.active {
+      /*padding-inline-start: 62px;*/
+    }
+  }
+}

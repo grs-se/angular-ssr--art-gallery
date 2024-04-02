@@ -1,0 +1,217 @@
+<section class="artwork-edit mt-5">
+  <div class="container">
+    <div class="row">
+      <!--
+
+            <div class="col-lg-6">
+              <app-edit-product-form [artwork]="artworkFormValues"
+                                     [categories]="categories"
+                                     [types]="types"
+                                     [tags]="tags">
+              </app-edit-product-form>
+            </div>
+
+            <div class="col-lg-6">
+              <app-edit-product-photos [artwork]="artwork"></app-edit-product-photos>
+            </div>-->
+      <div class="col-12">
+        <tabset class="artwork-tabset">
+          <tab heading="Add Images">
+            <div class="col-lg-8">
+              <app-edit-product-photos
+                [artwork]="artwork"
+              ></app-edit-product-photos>
+            </div>
+          </tab>
+          <tab heading="Edit Details">
+            <div class="col-lg-6">
+              <app-edit-product-form
+                [artwork]="artworkFormValues"
+                [categories]="categories"
+                [collections]="collections"
+                [types]="types"
+                [tags]="tags"
+                [locations]="locations"
+                [mediums]="mediums"
+              >
+              </app-edit-product-form>
+            </div>
+          </tab>
+          <tab heading="Edit Metadata">
+            <div class="col-lg-6">
+              <app-edit-metadata-form> </app-edit-metadata-form>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--<section class="artwork-edit mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <form
+          #artworkForm="ngForm"
+          (ngSubmit)="onSubmit(artworkForm.valid && artworkForm.value)"
+        >
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="title">Artwork Title</label>
+              <input
+                [ngClass]="{
+                  'is-invalid': title.invalid && (title.dirty || title.touched)
+                }"
+                required
+                type="text"
+                class="form-control"
+                id="title"
+                placeholder="Artwork Title"
+                name="title"
+                #title="ngModel"
+                [(ngModel)]="artwork.title"
+              />
+              <div
+                *ngIf="title.invalid && (title.dirty || title.touched)"
+                class="invalid-feedback"
+              >
+                <div *ngIf="title.errors?.['required']">
+                  Artwork Title is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="price">Price</label>
+              <input
+                [ngClass]="{
+                  'is-invalid': price.invalid && (price.dirty || price.touched)
+                }"
+                required
+                type="text"
+                class="form-control"
+                id="price"
+                placeholder="Price"
+                currencyMask
+                name="price"
+                #price="ngModel"
+                pattern="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(\.[0-9][0-9])?$"
+                [min]="25.0"
+                [ngModel]="+artwork.price | number : '1.2-2'"
+                (ngModelChange)="updatePrice(+$event)"
+              />
+              <div
+                *ngIf="price.invalid && (price.dirty || price.touched)"
+                class="invalid-feedback"
+              >
+                <div *ngIf="price.errors?.['required']">
+                  Artwork price is required
+                </div>
+                <div *ngIf="price.errors?.['pattern']">
+                  Artwork price needs to be decimal value
+                </div>
+                <div *ngIf="price.errors?.['min']">
+                  Artwork price must be greater than zero
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="description">Description</label>
+              <textarea
+                [ngClass]="{
+                  'is-invalid':
+                    description.invalid &&
+                    (description.dirty || description.touched)
+                }"
+                required
+                #description="ngModel"
+                class="form-control"
+                id="description"
+                [(ngModel)]="artwork.description"
+                name="description"
+                rows="3"
+              ></textarea>
+              <div
+                *ngIf="
+                  description.invalid &&
+                  (description.dirty || description.touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="description.errors?.['required']">
+                  Artwork description is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="category">Category</label>
+              <select
+                id="category"
+                class="form-control"
+                name="categoryId"
+                [(ngModel)]="artwork.categoryId"
+                required
+              >
+                <option
+                  *ngFor="let category of categories"
+                  [selected]="artwork.categoryId === category.id"
+                  [ngValue]="category.id"
+                >
+                  Category name: {{ category.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="tag">Tags</label>
+              <select
+                id="tag"
+                class="form-control"
+                name="tagsId"
+                [(ngModel)]="artwork.tagsId"
+                required
+              >
+                <option
+                  *ngFor="let tag of tags"
+                  [selected]="artwork.tagsId === tag.id"
+                  [ngValue]="tag.id"
+                >
+                  Tag name: {{ tag.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="type">Type</label>
+              <select
+                id="type"
+                class="form-control"
+                name="typeId"
+                [(ngModel)]="artwork.typeId"
+                required
+              >
+                <option
+                  *ngFor="let type of types"
+                  [selected]="artwork.typeId === type.id"
+                  [ngValue]="type.id"
+                >
+                  Type name: {{ type.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <button
+            [disabled]="!artworkForm.valid"
+            type="submit"
+            class="btn btn-primary my-3 float-right"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+-->

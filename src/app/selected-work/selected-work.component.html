@@ -1,0 +1,44 @@
+<div class="selected-works">
+  @for (artwork of artworks; track artwork) {
+    <div>
+      <img src="{{ artwork.imageUrl }}" />
+      <div class="artwork-info-box">
+        <p class="p-artwork-info-title">
+          <span class="span-artwork-title">
+            {{ artwork.title }}
+          </span>
+        </p>
+        @if (artwork.dateProduced) {
+          <p class="p-artwork-info-details">
+            ({{ dateProduced(artwork.dateProduced) }})
+            @if (artwork.artworkMedium) {
+              <span class="span-artwork-medium">{{
+                artwork.artworkMedium | titlecase
+              }}</span>
+            }
+            <span class="span-artwork-dims"> 57 x 74cm</span>
+          </p>
+        }
+        <!--<em>index: {{i}}</em>-->
+        <!--<div class="card-details mx-4 mb-2">
+        <div class="row">
+          <div class="col-7">
+            <a [routerLink]="['/gallery/', galleryRoutes?.galleryName, artwork.id]"
+              class="active artwork-title">
+              {{artwork.title}}
+            </a>
+          </div>
+          <div *ngIf="artwork.dateProduced" class="col-5">
+            <small class="text-muted">{{dateProduced(artwork.dateProduced)}}</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-7">
+            <small *ngIf="artwork.medium" class="text-muted">{{artwork.medium | titlecase}}</small>
+          </div>
+        </div>
+      </div>-->
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,43 @@
+<div class="artwork-info-box">
+  <p class="p-artwork-info-title">
+    <span class="span-artwork-title">
+      {{ artwork.title | titlecase }}
+    </span>
+  </p>
+  <p class="p-artwork-info-details">
+    {{ dateProduced(artwork.dateProduced) }}
+    <span class="span-artwork-medium">{{ artwork.artworkMedium }}</span>
+    <!-- <span class="span-artwork-medium">{{ artwork.medium }}</span> -->
+    <span class="span-artwork-dims"> 57 x 74cm</span>
+  </p>
+
+  @if (showInfoFooter) {
+    <div class="artwork-info-box-footer pt-4">
+      <p class="artwork-info-box-category">
+        Category:
+        <a [routerLink]="['/gallery/categories/', artwork.artworkCategory]">{{
+          artwork.artworkCategory
+        }}</a>
+      </p>
+    </div>
+  }
+  <!--<em>index: {{i}}</em>-->
+  <!--<div class="card-details mx-4 mb-2">
+    <div class="row">
+      <div class="col-7">
+        <a [routerLink]="['/gallery/', galleryRoutes?.galleryName, artwork.id]"
+           class="active artwork-title">
+          {{artwork.title}}
+        </a>
+      </div>
+      <div *ngIf="artwork.dateProduced" class="col-5">
+        <small class="text-muted">{{dateProduced(artwork.dateProduced)}}</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7">
+        <small *ngIf="artwork.medium" class="text-muted">{{artwork.medium | titlecase}}</small>
+      </div>
+    </div>
+  </div>-->
+</div>

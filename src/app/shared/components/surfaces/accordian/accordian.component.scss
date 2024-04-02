@@ -1,0 +1,39 @@
+.filter-group {
+  /*margin-bottom: 1.75rem;*/
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 160px;
+    margin: 0 0 9px;
+
+    h6,
+    .fa,
+    .expand-icon {
+      font-style: normal;
+      font-size: 14px;
+      color: #999;
+
+      /*    &.active-link {
+        color: #000;
+      }*/
+    }
+
+    .fa,
+    .expand-icon {
+      border: 1px solid #999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 12px;
+      width: 12px;
+      color: #999;
+    }
+  }
+}
+
+.active {
+  color: #000 !important;
+}

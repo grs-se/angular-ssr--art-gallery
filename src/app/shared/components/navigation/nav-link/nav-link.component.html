@@ -1,0 +1,11 @@
+<li #li
+    class="nav-link"
+    [value]=""
+    (click)="[onClick()]"
+    routerLink="/">
+  <a class="nav-link"
+     [class.active]=""
+     [class.visited]="visited">
+    <ng-content></ng-content>
+  </a>
+</li>

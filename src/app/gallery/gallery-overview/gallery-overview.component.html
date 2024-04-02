@@ -1,0 +1,39 @@
+<!--<app-section-header wrapperStyles="margin-left: 15.875rem;" height="pt-5 pb-3" padding="px-3"></app-section-header>-->
+<app-gallery-header></app-gallery-header>
+<section class="gallery-overview container">
+  <div class="gallery-overview__container">
+    <ul class="gallery-overview__grid list-unstyled">
+      @for (item of categories; track item) {
+        <li
+          class="gallery-overview__card"
+          [value]="item.id"
+          [routerLink]="[item.name]">
+          <!--      <li *ngFor="let item of data"
+          routerLink="/gallery/collections/{{item.name}}"
+          class="gallery-overview__card"
+          [value]="item.id"
+          (click)="onCategorySelected(item.id)">-->
+          <img src="{{item.imageUrl}}" class="gallery-overview__img" />
+          <div class="img-overlay">
+          </div>
+          <div class="gallery-overview__card-info">
+            <div class="gallery-overview__card-details">
+              <h1 class="category-name">{{item.name}}</h1>
+              <!--<p>{{category.startDate}} - {{category.endDate}}</p>-->
+              <!--<p>({{totalCount}})</p>-->
+              <!--<p>({{category.count}})</p>-->
+              <!--<p class="line-clamp">{{category.description}}</p>-->
+            </div>
+            <div class="gallery-overview__card__icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#787878" class="grs-icon chevron-right" viewBox="0 0 24 24">
+                <title>Go To Link Icon</title>
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+              </svg>
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+

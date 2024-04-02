@@ -1,0 +1,61 @@
+.grs-btn-info {
+  display: block;
+  visibility: visible;
+  border-radius: 5px;
+  background-color: inherit;
+  border: 1px solid #e3e6ed;
+  color: var(--grs-color-primary) !Important;
+  /*border: 1px solid #95a5a6;*/
+  /*padding: 0.2rem;*/
+
+  i {
+    color: #95a5a6;
+    padding: 0.2rem;
+  }
+  /*  @include respond($tablet-portrait) {
+    display: block;
+    visibility: visible;
+  }*/
+}
+
+.grs-search-btn {
+  background: linear-gradient(to top, #aaa 0%, #bbb 50%);
+  color: #fff;
+  width: 100%;
+  /*box-shadow: 0 1px 3px #aaaaaa;*/
+  border: 1px solid #2d2d2d;
+  font: 300 13px/14px Lucida Sans !Important;
+}
+
+.btn-container {
+    width: 100%;
+
+}
+
+.primary {
+
+}
+
+.secondary {
+
+}
+
+.tertiary {
+
+}
+
+.auth {
+
+}
+
+.alert {
+
+}
+
+.danger {
+
+}
+
+.success {
+
+}

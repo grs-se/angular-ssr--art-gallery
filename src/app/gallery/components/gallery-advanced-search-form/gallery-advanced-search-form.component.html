@@ -1,0 +1,124 @@
+<div class="gallery-header__search-box">
+  <h6>Search</h6>
+  <app-search-box [hasBtn]="true" placeholder="Keyword" />
+  <app-sort-box [sort]="artworkParams!.sort" [sortOptions]="sortOptions1" />
+
+  @if (showMoreOptions) {
+    <div (click)="toggleOptions()" class="show-more-options">
+      {{ !moreOptionsIsOpen ? "Show more options" : "Show fewer options" }}
+      <i
+        class="show-more-options-icon fa"
+        [ngClass]="!moreOptionsIsOpen ? 'fa-plus' : 'fa-minus'"
+      ></i>
+    </div>
+  }
+
+  @if (moreOptionsIsOpen && advancedSearchFormValues) {
+    <!-- More options -->
+    <form
+      class="mt-4"
+      #advancedSearchForm="ngForm"
+      (ngSubmit)="onSubmit(advancedSearchForm.value)"
+    >
+      <!-- onSubmit(advancedSearchForm.valid && advancedSearchForm.value) -->
+
+      <div class="more-options">
+        <div class="form-group col-md-6">
+          <label for="location">Location</label>
+          <select
+            id="location"
+            class="form-control"
+            name="locationId"
+            [(ngModel)]="advancedSearchFormValues.locationId"
+            required
+          >
+            <!-- [(ngModel)]="artwork!.artworkTypeId" -->
+
+            @for (location of locations; track location) {
+              <option
+                [selected]="advancedSearchFormValues.locationId === location.id"
+                [ngValue]="location.id"
+              >
+                <!-- <option
+              [selected]="artwork!.artworkTypeId === location.id"
+              [ngValue]="location.id"
+            > -->
+                {{ location.name }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="category">Category</label>
+          <select
+            id="category"
+            class="form-control"
+            name="categoryId"
+            [(ngModel)]="advancedSearchFormValues.categoryId"
+            required
+          >
+            <!-- [(ngModel)]="artwork!.artworkTypeId" -->
+
+            @for (category of categories; track category) {
+              <option
+                [selected]="advancedSearchFormValues.categoryId === category.id"
+                [ngValue]="category.id"
+              >
+                <!-- <option
+              [selected]="artwork!.artworkTypeId === location.id"
+              [ngValue]="location.id"
+            > -->
+                {{ category.name }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="medium">Medium</label>
+          <select
+            id="medium"
+            class="form-control"
+            name="mediumId"
+            [(ngModel)]="advancedSearchFormValues.mediumId"
+            required
+          >
+            @for (medium of mediums; track medium) {
+              <option
+                [selected]="advancedSearchFormValues.mediumId === medium.id"
+                [ngValue]="medium.id"
+              >
+                {{ medium.name }}
+              </option>
+            }
+          </select>
+        </div>
+        <!-- <app-sort-box
+        [sort]="artworkParams!.locationId.toString()"
+        [sortOptions]="sortOptions2"
+        (sortSelected)="emitLocationSelected($event)"
+      /> -->
+
+        <!-- <app-sort-box
+        [sort]="artworkParams!.collectionId.toString()"
+        [sortOptions]="sortOptions3"
+
+      /> -->
+
+        <!-- <app-search-box
+      [hasBtn]="false"
+      placeholder="Location"
+      [showSearchIcon]="false"
+    >
+    </app-search-box> -->
+      </div>
+      <!-- [disabled]="!artworkForm.valid" -->
+      <button type="submit" class="btn btn-primary my-3 float-right">
+        Submit
+      </button>
+    </form>
+
+    <!-- End of More options -->
+  }
+</div>

@@ -1,0 +1,16 @@
+<div class="slider">
+  @for (slide of slides; track slide) {
+    <div #slide class="slide">
+      <img [src]="slide.image" />
+    </div>
+  }
+  <button #btnPrev (click)="prevSlide()" class="slider__btn slider__btn--left">
+    <i class="fa fa-sm fa-angle-left"></i>
+    <!--&larr;-->
+  </button>
+  <button #btnNext (click)="nextSlide()" class="slider__btn slider__btn--right">
+    <i class="fa fa-sm fa-angle-right"></i>
+    <!--&rarr;-->
+  </button>
+  <div #dots class="dots"></div>
+</div>

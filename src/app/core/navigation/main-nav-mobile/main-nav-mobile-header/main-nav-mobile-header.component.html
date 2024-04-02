@@ -1,0 +1,25 @@
+<header class="main-nav-mobile__header">
+  <!-- <button [class.active]="sidenavService.mobileNavIsExpanded"
+           (click)="sidenavService.mobileNavIsExpanded ? sidenavService.collapseMobileNav() : sidenavService.expandMobileNav()"
+           class="right-sidenav_toggle"
+           type="button">
+     <i *ngIf="sidenavService.mobileNavIsExpanded === false"
+        class="right-sidenav_toggle-icon fa fa-bars"></i>
+     <i *ngIf="sidenavService.mobileNavIsExpanded"
+        class="gallery-sidenav__close-btn_icon fa fa-close"></i>
+   </button>-->
+  <a class="main-nav-mobile__site-brand" routerLink="/">GRS</a>
+  <button (click)="sidenavService.mainNavMobileSiteNavigationIsExpanded ? sidenavService.collapseMainNavMobileSiteNavigation() : sidenavService.expandMainNavMobileSiteNavigation()"
+          class="main-nav-mobile__toggler" type="button">
+    <span class="main-nav-mobile__toggler-inner">
+      <span class="main-nav-mobile__toggler-icon"></span>
+    </span>
+  </button>
+  <!--  <button [class.main-nav-mobile__toggler--open]="sidenavService.mainNavMobileSiteNavigationIsExpanded"
+            (click)="sidenavService.mainNavMobileSiteNavigationIsExpanded ? sidenavService.collapseMainNavMobileSiteNavigation() : sidenavService.expandMainNavMobileSiteNavigation()"
+            class="main-nav-mobile__toggler main-nav-mobile__toggler--open" type="button">
+      <span class="main-nav-mobile__toggler-inner">
+        <span class="main-nav-mobile__toggler-icon"></span>
+      </span>
+    </button>-->
+</header>

@@ -1,0 +1,28 @@
+<div class="collections-overview__grid">
+  @for (category of categories; track category; let i = $index) {
+    <div
+      routerLink="/gallery/{{ category.name }}"
+      class="collections-overview__card"
+      (click)="emitClickEvent(category.id)"
+      >
+      <!--<div class="img-overlay">-->
+      <!--<small>Collection:</small>-->
+      <div class="collections-overview__img-container">
+        <!--<div class="collections-overview__img-wrapper">-->
+        <img
+          src="{{ category.imageUrl }}"
+          class="collections-overview__card-img"
+          />
+        <!--</div>-->
+      </div>
+      @if (showTitle) {
+        <div
+          class="collections-overview__card-header"
+          >
+          <h4 class="display-6 category-name">{{ category.name }}</h4>
+        </div>
+      }
+    <!--</div>-->
+  </div>
+}
+</div>

@@ -1,0 +1,38 @@
+.artwork-info-box {
+  display: block;
+  /*height: calc(calc(var(--grs-grid-card-image-height) + (calc(var(--grs-grid-card-padding) * 2))) / var(--phi));*/
+  height: 184px;
+  padding: 18px 9px;
+  /*    @include respond($phone) {
+      padding: 15px 18px;
+    }*/
+
+  &-footer {
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+.p-artwork-info-title {
+  color: #000 !important;
+  color: #999 !important;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  /*margin-bottom: 2px;*/
+  margin-bottom: 8px;
+}
+
+.p-artwork-info-details {
+  display: block;
+}
+
+.span-artwork-medium,
+.span-artwork-dims {
+  display: block;
+  line-height: 16px;
+}
+/*  .span-artwork-medium {
+    text-transform: lowercase;
+  }*/

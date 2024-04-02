@@ -1,0 +1,35 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+/**,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+  html {
+    font-size: base-font-size(10px);
+
+    @include respond($big-desktop) {
+      font-size: base-font-size(12px);
+    }
+
+    @include respond($tablet-landscape) {
+      font-size: base-font-size(9px);
+    }
+
+    @include respond($tablet-portrait) {
+      font-size: base-font-size(8px);
+    }
+  }*/
+
+html {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--grs-bg-light);
+  min-height: 100vh;
+}

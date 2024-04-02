@@ -1,0 +1,8 @@
+<xng-breadcrumb [separator]="iconTemplate">
+  <ng-container *xngBreadcrumbItem="let breadcrumb">
+    {{ breadcrumb | titlecase }}
+  </ng-container>
+</xng-breadcrumb>
+<ng-template #iconTemplate>
+  <i class="fa fa-angle-right"></i>
+</ng-template>

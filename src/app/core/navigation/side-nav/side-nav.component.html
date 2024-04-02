@@ -1,0 +1,38 @@
+<!--div *ngIf="showRightSideNav"
+    #rightSidenav
+    class="right-sidenav">-->
+<!--<div class="sidenav-expanded__overlay"></div>-->
+<div class="sidenav">
+  <nav class="sidenav__nav">
+    <ul class="sidenav__nav-items">
+      <li class="sidenav__nav-item">
+        <a routerLink="/"
+           (click)="sidenavService.collapseMainSidenav()"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact:true}"
+           class="sidenav__nav-link">
+          Home
+        </a>
+      </li>
+      <li class="sidenav__nav-item">
+        <a routerLink="/gallery/{{galleryRoutes.galleryName ? galleryRoutes.galleryName : '' }}"
+           (click)="sidenavService.collapseMainSidenav()"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact:true}"
+           class="sidenav__nav-link">
+          Gallery
+        </a>
+      </li>
+      <li class="sidenav__nav-item">
+        <a routerLink="/contact"
+           (click)="sidenavService.collapseMainSidenav()"
+           routerLinkActive="active"
+           class="sidenav__nav-link">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<!--</div>
+-->

@@ -1,0 +1,27 @@
+<!--<ng-template [ngIf]="isAccordian" [ngIfElse]="notAccordian">
+  <div class="filter-group">
+    <div class="accordion"
+         (click)="toggleCollapse()"
+         role="button">
+      <div class="filter-group__header">
+        <i class="fa fa-1"
+           [ngClass]="isCollapsed ? 'fa-caret-right' : 'fa-caret-down'">
+        </i>
+        {{header}}
+      </div>
+    </div>
+    <ng-container *ngIf="isCollapsed">
+      <ng-content *ngIf="!isCollapsed"></ng-content>
+    </ng-container>
+  </div>
+</ng-template>-->
+
+
+<!--<ng-template #notAccordian>-->
+  <div class="filter-group">
+    <a class="filter-group__header" [routerLink]="['/gallery/', 'category']" [routerLinkActive]="'active-link'">{{header}}</a>
+    <ng-content></ng-content>
+  </div>
+<!--</ng-template>-->
+
+

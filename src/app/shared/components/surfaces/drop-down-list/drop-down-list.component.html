@@ -1,0 +1,23 @@
+<ul class="dropdown-list">
+  @for (item of data; track item; let i = $index) {
+    <li
+      #li
+      class="dropdown-list__item"
+      [routerLinkActive]="'active'"
+      [value]="item.id"
+    >
+      <!--(click)="[emitClickEvent(item.id)]"-->
+      <!-- [routerLink]="[routeParams, item.name! | slugify]" -->
+
+      <a class="grs-nav-link" [routerLink]="[routeParams, item.name!]">
+        @if (appConfigService.showSideNavLinkCounter) {
+          <div>
+            <span class="count">({{ item.count }})</span>
+          </div>
+        }
+        <span class="name">{{ item.name }}</span>
+        <!--<i class="fa fa-angle-right nav-link-icon"></i>-->
+      </a>
+    </li>
+  }
+</ul>

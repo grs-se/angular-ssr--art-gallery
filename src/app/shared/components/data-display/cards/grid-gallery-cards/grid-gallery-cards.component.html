@@ -1,0 +1,22 @@
+@if (artworks) {
+  <div
+    #gridContainerRef
+    class="gallery-grid"
+    [ngClass]="[
+      'grid-cols--' + galleryStyles.gridCols?.toString(),
+      'grid-style--' + galleryStyles.gridStyle.toString()
+    ]"
+  >
+    @for (artwork of artworks; track artwork.id; let index = $index) {
+      @if (index <= 5) {
+        <!-- <app-grid-cards [artwork]="artwork" /> -->
+        <app-grid-gallery-card [artwork]="artwork" [index]="index" />
+      } @else {
+        @defer {
+          <!-- <app-grid-cards [artwork]="artwork" /> -->
+          <app-grid-gallery-card [artwork]="artwork" />
+        }
+      }
+    }
+  </div>
+}

@@ -1,0 +1,70 @@
+<div class="py-5 border">
+  <div class="container">
+    @if (!addImageMode) {
+      <div class="d-flex justify-content-between mb-3">
+        <h4>Artwork Images</h4>
+        <button class="btn btn-primary" (click)="addImageModeToggle()">
+          <i class="fa fa-plus-circle me-2"></i>Add New Image
+        </button>
+      </div>
+      <div class="row">
+        @for (image of artwork?.images; track image) {
+          <div class="col-4">
+            <div class="card">
+              <img
+                class="card-img-top h-auto w-100 mb-2"
+                src="{{ image.imageUrl }}"
+                alt="{{ image.fileName }}"
+              />
+              <div class="btn-group" style="width: 100%">
+                <button
+                  type="button"
+                  (click)="setMainImage(image.id)"
+                  [disabled]="image.isMain"
+                  class="btn btn-sm {{
+                    image.isMain ? 'btn-success' : 'btn-outline-success'
+                  }}"
+                  style="width: 50%"
+                >
+                  Set Main
+                </button>
+                <button
+                  type="button"
+                  (click)="deleteImage(image.id)"
+                  [disabled]="image.isMain"
+                  class="btn btn-outline-danger"
+                  style="width: 50%"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+    @if (addImageMode) {
+      <div class="d-flex justify-content-between mb-3">
+        <h3>Add new artwork image</h3>
+        <button
+          class="btn btn-outline-secondary"
+          (click)="addImageModeToggle()"
+        >
+          Cancel
+        </button>
+      </div>
+      @if (progress > 0) {
+        <div class="progress form-group">
+          <div
+            class="progress-bar progress-bar-striped bg-success"
+            role="progressbar"
+            [style.width.%]="progress"
+          >
+            {{ progress }}%
+          </div>
+        </div>
+      }
+      <app-photo-widget (addFile)="uploadFile($event)"></app-photo-widget>
+    }
+  </div>
+</div>

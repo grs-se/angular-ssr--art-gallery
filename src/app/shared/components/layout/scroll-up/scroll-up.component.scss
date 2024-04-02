@@ -1,0 +1,27 @@
+.icon {
+  position: fixed;
+  z-index: 16;
+}
+
+.text {
+  display: block;
+}
+
+#scrollUp {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  bottom: 0px;
+  right: 0px;
+
+  img {
+    background: #444;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    // border-leradiu: 5px;
+    width: 24px;
+    height: 24px;
+    // width: 30px;
+    // height: 30px;
+  }
+}

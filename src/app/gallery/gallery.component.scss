@@ -1,0 +1,28 @@
+/*@use "mixins" as *;
+@use "variables" as *;*/
+
+@use 'mixins' as *;
+
+:host {
+  height: 100%;
+  width: 100%;
+  min-height: calc(100vh - 50px);
+}
+
+.gallery {
+  position: relative;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    overflow: clip;
+    // border-bottom: 1px solid var(--grs-border-color);
+    /*min-height: calc(100vh - 100px);*/
+
+    @include respond($phone) {
+      flex-direction: column;
+    }
+  }
+}

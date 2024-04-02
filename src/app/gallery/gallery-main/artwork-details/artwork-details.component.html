@@ -1,0 +1,133 @@
+@if (artwork) {
+  <section class="artwork-details">
+    <!--<app-section-header height="py-1" prefix="" fontSize="font-size: 1rem;"></app-section-header>-->
+    <app-gallery-header [showHeaderTitle]="false">
+      <app-paging-header mode="index" [totalCount]="totalCount" [index]="index">
+      </app-paging-header>
+      <app-next-prev-btns
+        [style]="1"
+        (getNext)="getNextArtwork()"
+        (getPrev)="getPrevArtwork()"
+        [totalCount]="totalCount"
+        [index]="index"
+        [showCountAndIndex]="true"
+      >
+      </app-next-prev-btns>
+    </app-gallery-header>
+    <!-- <span>Show all works</span> -->
+    <div class="artwork-details__container">
+      <!-- <app-next-prev-btns
+      [style]="1"
+      (getNext)="getNextArtwork()"
+      (getPrev)="getPrevArtwork()"
+      [totalCount]="totalCount"
+      [index]="1"
+      [showCountAndIndex]="true"
+      >
+    </app-next-prev-btns> -->
+      @if (artwork) {
+        <div class="artwork-details__layout">
+          <figure class="figure">
+            <ngx-gallery
+              [options]="galleryOptions"
+              [images]="galleryImages"
+              class="gallery"
+            >
+            </ngx-gallery>
+          </figure>
+          <figcaption>
+            <div class="details">
+              <div class="artwork-info-box">
+                <p class="p-artwork-info-title">
+                  <span class="span-artwork-title">
+                    {{ artwork.title | titlecase }}
+                  </span>
+                </p>
+                @if (artwork.dateProduced) {
+                  <p class="p-artwork-info-details">
+                    {{ artwork.dateProduced }}
+                    @if (artwork.artworkMedium) {
+                      <span class="span-artwork-medium">{{
+                        artwork.artworkMedium | titlecase
+                      }}</span>
+                    }
+                    <span class="span-artwork-dims"> 57 x 74cm</span>
+                  </p>
+                }
+                <!--<em>index: {{i}}</em>-->
+                <!--<div class="card-details mx-4 mb-2">
+                <div class="row">
+                  <div class="col-7">
+                    <a [routerLink]="['/gallery/', galleryRoutes?.galleryName, artwork.id]"
+                      class="active artwork-title">
+                      {{artwork.title}}
+                    </a>
+                  </div>
+                  <div *ngIf="artwork.dateProduced" class="col-5">
+                    <small class="text-muted">{{dateProduced(artwork.dateProduced)}}</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-7">
+                    <small *ngIf="artwork.medium" class="text-muted">{{artwork.medium | titlecase}}</small>
+                  </div>
+                </div>
+              </div>-->
+              </div>
+            </div>
+            @if (
+              !(accountService.isAdmin$ | async) &&
+              (accountService.currentUser$ | async)
+            ) {
+              <div>
+                <p style="font-size: 2em">
+                  {{ artwork.price | currency: "GBP" }}
+                </p>
+                @if (quantityInBasket > 0) {
+                  <h5 class="text-primary mb-3">
+                    You have {{ quantityInBasket }} of this item in your basket
+                  </h5>
+                }
+                <div class="d-flex justify-content-start align-items-center">
+                  <i
+                    (click)="decrementQuantity()"
+                    class="fa fa-minus-circle text-warning me-2"
+                    style="cursor: pointer; font-size: 2em"
+                  >
+                  </i>
+                  <span class="font-weight-bold" style="font-size: 1.5em">
+                    {{ quantity }}
+                  </span>
+                  <i
+                    (click)="incrementQuantity()"
+                    class="fa fa-plus-circle text-warning ms-2"
+                    style="cursor: pointer; font-size: 2em"
+                  >
+                  </i>
+                  <button
+                    (click)="updateBasket()"
+                    [disabled]="quantity === quantityInBasket"
+                    class="btn btn-outline-primary ms-4"
+                  >
+                    {{ buttonText }}
+                  </button>
+                </div>
+              </div>
+            }
+          </figcaption>
+        </div>
+      }
+    </div>
+    <!--  <app-bottom-nav>
+  <img src="prevArtwork.imgUrl" />
+  <button [routerLink]="['/gallery/', artworkService.galleryRoutes?.galleryName, prevProdId]"></button>
+  <button [routerLink]="['/gallery/', artworkService.galleryRoutes?.galleryName, nextProdId]"></button>
+  <button (click)="getPrevArtwork()" class="btn btn-sm btn-secondary">Previous</button>
+  <img src="nextArtwork.imgUrl" />
+  <button (click)="getNextArtwork()" class="btn btn-sm btn-secondary">Next</button>
+</app-bottom-nav>-->
+  </section>
+}
+<!--<div class="bg-white py-3">
+<span>Next page</span>
+</div>-->

@@ -1,0 +1,20 @@
+<a
+  class="filter-group accordion accordion-flush d-flex align-items-center gap-2"
+  (click)="isCollapsed = !isCollapsed"
+  [attr.aria-expanded]="!isCollapsed"
+  aria-controls="collapseBasic"
+  role="button"
+  [routerLink]="['/archive', collectionName | lowercase]"
+  >
+  <!--[routerLink]="[params$ ? params$ + collectionName : collectionName]">-->
+  <div class="filter-group__header">
+    <h6 routerLinkActive="active">{{ collectionName }}</h6>
+    <!-- <i class="fa fa-1"
+    [ngClass]="isCollapsed ? 'fa-angle-right' : 'fa-angle-down'">
+  </i>-->
+  <i class="expand-icon">{{ isCollapsed ? "&plus;" : "&minus;" }}</i>
+</div>
+</a>
+@if (isCollapsed === false) {
+  <ng-content></ng-content>
+}

@@ -1,0 +1,73 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+:host {
+  margin: 0 auto;
+  width: 75%;
+  padding: 24px;
+
+  @include respond($phone) {
+    width: 100%;
+    padding: 24px 0;
+  }
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+section::after {
+  content: "";
+  flex-grow: 999999999;
+}
+
+div {
+  margin: 2px;
+  background-color: #aaa;
+  position: relative;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+i {
+  display: block;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  vertical-align: bottom;
+}
+
+// .slides-wrapper {
+//   display: flex;
+//   flex-direction: row;
+//   gap: 24px;
+//   padding: 24px;
+//   width: 100%;
+//   max-height: calc(100vh - 50px);
+//   flex-wrap: wrap;
+// }
+
+// .slide-img-wrapper {
+// }
+// .slide-img {
+//   max-height: 30vh;
+//   width: 100%;
+// }
+
+// section {
+//   display: flex;
+//   flex-wrap: nowrap;
+//   gap: 2rem;
+// }
+
+// img {
+//   height: 20rem;
+//   width: auto;
+// }

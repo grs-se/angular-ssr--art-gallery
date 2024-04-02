@@ -1,0 +1,52 @@
+<div class="home-page">
+  <section class="hero">
+    <!-- <app-carousel
+      [slides]="slides"
+      mode="slide"
+    ></app-carousel> -->
+    <!-- [itemsPerSlide]="itemsPerSlide" -->
+    <app-banner [slides]="slides"></app-banner>
+    <!-- <div class="grs-container-fluid">
+      <div class="section-heading__wrapper">
+        <h3 class="section-heading__heading">Selected Work</h3>
+      </div>-->
+    <!--<div class="home-page__gallery-overview__wrapper">-->
+    <!--      <div class="grs-container">
+          <app-grid-gallery-cards [artworks]="artworks"
+                                  [cardStyle]="2"
+                                  [gridStyle]="2">
+          </app-grid-gallery-cards>
+        </div>-->
+    <!--    <app-grid-cards [artworks]="artworks"
+                            [cardStyle]="2"
+                            [gridStyle]="2">
+            </app-grid-cards>-->
+    <!--</div>-->
+    <!--<app-masonry-cards [artworks]="artworks" [width]="100"></app-masonry-cards>-->
+    <!--</div>-->
+    <!-- [width]="75"
+    [padding]="48" -->
+    <!-- <app-masonry-cards [slides]="slides"></app-masonry-cards> -->
+    <!--<app-nav-bar></app-nav-bar>-->
+    <div class="grs-container-fluid">
+      <div class="hero-header">
+        <!--<h1>George Rice-Smith</h1>-->
+        <!--<h3 class="">Portfolio</h3>-->
+        <!--<h5>2012 &#8212; 2023</h5>-->
+        <hr />
+        <button
+          routerLink="/gallery/categories/drawing"
+          type="button"
+          class="btn btn-sm btn-secondary"
+        >
+          View Gallery of 232 works
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- <app-overview *ngIf="appConfigService.showCollectionsOverview"></app-overview> -->
+  <!-- <app-overview-v2></app-overview-v2> -->
+  <!-- <app-news *ngIf="appConfigService.showNews"></app-news> -->
+  <!--<app-scroll-up></app-scroll-up>-->
+</div>

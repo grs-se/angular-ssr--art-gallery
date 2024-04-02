@@ -1,0 +1,42 @@
+@use "mixins" as *;
+/*@use "variables" as *;*/
+
+:host {
+  min-height: calc(100vh - 50px);
+  width: 100%;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @include respond($tablet-landscape) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond($tablet-portrait) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond($phone) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+// .grid-cols--3 {
+//   grid-template-columns: repeat(3, 1fr);
+// }
+
+// .grid-cols--2 {
+//   grid-template-columns: repeat(2, 1fr);
+// }
+
+// .grid-cols--1 {
+//   grid-template-columns: repeat(1, 1fr);
+// }
+
+.grid-style--2 {
+  grid-gap: 0;
+  border-top: 1px solid var(--grs-border-color);
+  border-left: 1px solid var(--grs-border-color);
+}

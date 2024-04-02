@@ -1,0 +1,132 @@
+<!--Gallery Main Container -->
+<main class="gallery__main-container">
+  <!--Gallery Header-->
+  <!--  <app-banner [imgUrl]="'/assets/images/lincoln_s-inn-fields_banner-desktop.jpg'"
+[height]="50"></app-banner>-->
+  <!--  <app-banner [artwork]="artworks[0]"
+[height]="50"
+[width]="50"
+></app-banner>-->
+  @if (appConfigService.showGalleryHeader) {
+    <app-gallery-header
+      (onPrev)="prevCollection()"
+      (onNext)="nextCollection()"
+      [totalCount]="totalCount"
+    >
+      @if (totalCount != undefined && totalCount > 0) {
+        <app-paging-header
+          colLeft
+          [totalCount]="totalCount"
+          [pageNumber]="artworkParams.pageNumber"
+          [pageSize]="artworkParams.pageSize"
+          style="margin-top: auto"
+        />
+      }
+
+      @if (accountService.currentUser$ | async) {
+        @if (!isPhonePortrait) {
+          @if (
+            locations.length > 0 && collections.length > 0 && mediums.length > 0
+          ) {
+            <app-gallery-advanced-search-form
+              [locations]="locations"
+              [collections]="collections"
+              [categories]="categories"
+              [mediums]="mediums"
+            />
+            <!-- (onLocationSelected)="onLocationSelected($event)" -->
+          }
+        }
+      }
+      <!--   <app-gallery-controls *ngIf="
+                          (accountService.currentUser$ | async)">
+      </app-gallery-controls>-->
+      <!--<app-gallery-toolbar></app-gallery-toolbar>-->
+    </app-gallery-header>
+  }
+
+  @if (appConfigService.showGalleryCollectionToggles) {
+    <button class="gallery__toggle-btn__prev">
+      <i class="fa fa-sm fa-angle-left"></i>
+    </button>
+    <button class="gallery__toggle-btn__next">
+      <i class="fa fa-sm fa-angle-right"></i>
+    </button>
+  }
+
+  <div class="gallery__gallery-container">
+    @if (
+      (accountService.currentUser$ | async) &&
+      appConfigService.showGalleryCollectionInformation
+    ) {
+      <app-collection-information [category]="categories[currentCategory]" />
+    }
+
+    @if (galleryMode === "grid") {
+      <app-grid-gallery-cards
+        [artworks]="artworks"
+        (onClick)="onArtworkSelected($event)"
+      >
+      </app-grid-gallery-cards>
+    }
+    <!--    <app-gallery-cards *ngIf="galleryMode === 'grid'"
+    [artworks]="artworks"
+    [cardStyle]="2"
+    [gridStyle]="2"
+    (onClick)="onArtworkSelected($event)">
+  </app-gallery-cards>-->
+    @if (galleryMode === "masonry") {
+      <app-masonry-cards [artworks]="artworks"> </app-masonry-cards>
+    }
+  </div>
+
+  @if (appConfigService.showGalleryFooter) {
+    <app-gallery-footer>
+      @if (totalCount > 0 && totalCount > artworkParams.pageSize) {
+        <app-pager
+          [totalCount]="totalCount"
+          [pageSize]="artworkParams.pageSize"
+          [pageNumber]="artworkParams.pageNumber"
+          (pageChanged)="onPageChanged($event)"
+        >
+        </app-pager>
+      }
+    </app-gallery-footer>
+  }
+</main>
+
+@if (
+  appConfigService.showGalleryAside && galleryService.galleryAsideIsExpanded
+) {
+  <app-gallery-aside
+    [artwork]="selectedArtwork ? selectedArtwork : artworks[0]"
+    (nextArtwork)="nextArtwork($event)"
+    (prevArtwork)="prevArtwork($event)"
+  >
+  </app-gallery-aside>
+}
+
+@if (appConfigService.showGalleryBottomNav) {
+  <app-bottom-nav>
+    @if (appConfigService.showGalleryCollectionBottomNavToggles) {
+      <button
+        (click)="prevCollection()"
+        class="gallery__toggle-btn__prev2"
+        [tooltip]="'Previous Collection'"
+        position="right"
+        [hideDelay]="50"
+      >
+        <i class="fa fa-sm fa-angle-left"></i>
+      </button>
+      <button
+        (click)="nextCollection()"
+        class="gallery__toggle-btn__next2"
+        [tooltip]="'Next Collection'"
+        position="left"
+        [hideDelay]="50"
+      >
+        <i class="fa fa-sm fa-angle-right"></i>
+      </button>
+    }
+  </app-bottom-nav>
+}

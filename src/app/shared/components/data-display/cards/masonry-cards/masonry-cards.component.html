@@ -1,0 +1,31 @@
+<section class="masonry-cards">
+  <!-- <section [ngClass]="'width--' + width"> -->
+  @for (artwork of artworks; track artwork) {
+    <div
+      [routerLink]="['/art/categories', artwork.artworkCategory, artwork.id]"
+      class="masonry-cards__card"
+       [style]="
+        'width:' +
+        (getMainImgWidth(artwork) * 250) / getMainImgHeight(artwork) +
+        'px;flex-grow:' +
+        (getMainImgWidth(artwork) * 250) / getMainImgHeight(artwork)
+      ">
+    <i [style]="
+          'padding-bottom:' +
+          (getMainImgHeight(artwork) / getMainImgWidth(artwork)) * 100 +
+          '%'
+        "></i>
+      <img src="{{ artwork.imageUrl }}"
+        alt="" />
+        <!--    [height]="(getMainImgHeight(artwork) * 250) / getMainImgHeight(artwork)"
+        [width]="(getMainImgWidth(artwork) * 250) / getMainImgHeight(artwork)"-->
+        <!-- <img
+        deferLoad
+        src="{{ artwork.imageUrl }}"
+        alt=""
+        [height]="(getMainImgHeight(artwork) / getMainImgWidth(artwork)) * 100"
+        [width]="(getMainImgWidth(artwork) * 200) / getMainImgHeight(artwork)"
+        /> -->
+      </div>
+    }
+  </section>

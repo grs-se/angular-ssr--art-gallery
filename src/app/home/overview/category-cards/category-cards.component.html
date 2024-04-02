@@ -1,0 +1,48 @@
+<div class="collections-overview__grid">
+  @for (category of categories; track category; let i = $index) {
+    <div
+      routerLink="/art/{{ category.name }}"
+      class="collections-overview__card"
+      (click)="emitClickEvent(category.id)"
+      >
+      <!--<div class="img-overlay">-->
+      <!--<small>Collection:</small>-->
+      <div class="collections-overview__card-header">
+        <h4 class="display-6 category-name">{{ category.name }}</h4>
+        <!--<small>Collection {{i+1}} of {{categoryCount}}</small>-->
+        <!--<span class="category-date">{{category.startDate}} &#8212; {{category.endDate}}</span>-->
+        <!--<btn class="category-count btn btn-sm btn-secondary">View {{category.count}} works</btn>-->
+      </div>
+      <div class="img-container">
+        <img
+          src="{{ category.imageUrl }}"
+          class="collections-overview__card-img"
+          />
+        </div>
+      <!--</div>-->
+      <div class="collections-overview__card-details">
+        <!--<div class="col-l">-->
+        <p class="line-clamp category-description">
+          {{ category.description }}
+        </p>
+        @if (category.description) {
+          <a
+            class="read-more"
+            >Read more</a
+            >
+        }
+      <!--</div>-->
+      <!--<div class="col-r">-->
+      <small>Collection {{ i + 1 }} of {{ categoryCount }}</small>
+      <a
+        class="category-count"
+        routerLink="/art/{{ category.name }}"
+        (click)="emitClickEvent(category.id)"
+        >
+        View {{ category.count }} works
+      </a>
+    <!--</div>-->
+  </div>
+</div>
+}
+</div>
